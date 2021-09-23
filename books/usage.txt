@@ -1,0 +1,20 @@
+SYNOPSIS 
+usage: python3 books.py <search_category> [string1] [string2]
+
+DESCRIPTION
+this program allows users to search a database of books. Users specify a category and 
+a string to search in that category. The program will print a list of books containing the 
+string in the corresponding category. Incorrect number of arguments will result in error 
+usage statement.
+
+options: 
+    <search_category> flag that specifies what aspect of the book details the user is searching. 
+        -a or author    searches book authors containing string1
+        -t or title    searches book titles containing string1
+        -y or year    searches for books published between years string1-string2 
+        -h or help    prints out this usage statement (no further args) this is the default if 
+                        no category is specified.
+        
+    [string1] specifies search for [-a | -t | -y].
+
+    [string2] valid for use as the end range of publication dates with -y.
