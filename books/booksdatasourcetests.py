@@ -20,9 +20,11 @@ class BooksDataSourceTester(unittest.TestCase):
 
     #tests whether the tiebreak of first name works
     def test_author_tiebreak(self):
-        # self.data_source = shorter source
-        #self.assertEqual(self.data_source.authors("bronte"), )
-        pass
+        self.data_source = booksdatasource.BooksDataSource('booksTest2.csv')
+        authors = self.data_source.authors("bront")
+        self.assertTrue(len(authors) == 3)
+        self.assertTrue(authors[0].given_name == "Ann")
+        self.assertTrue(authors[2].given_name == "Emily")
 
     #tests with incorrect type for search_test
     def test_author_inttype(self):
@@ -30,14 +32,15 @@ class BooksDataSourceTester(unittest.TestCase):
 
     def test_author_no_text(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
-        self.assertTrue(self.data_source.authors() == [])
+        authors = self.data_source.authors()
+        self.assertTrue(len(authors) == 5)
+        self.assertTrue(authors[0].surname == "Christie")
 
     def test_author_search(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         authors = self.data_source.authors("c")
         self.assertTrue(authors[0].surname == "Christie")
         self.assertTrue(authors[2].surname == "Willis")
-
 
     def test_book_search(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
