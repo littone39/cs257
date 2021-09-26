@@ -38,6 +38,13 @@ class BooksDataSourceTester(unittest.TestCase):
         self.assertTrue(authors[0].surname == "Christie")
         self.assertTrue(authors[2].surname == "Willis")
 
+
+    def test_book_search(self):
+        self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
+        books = self.data_source.books("b")
+        self.assertTrue(books[0].title == "Beloved")
+        self.assertTrue(books[1].title == "Blackout")
+
     def test_years_start(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         books = self.data_source.books_between_years(1987)
@@ -50,6 +57,40 @@ class BooksDataSourceTester(unittest.TestCase):
         books = self.data_source.books_between_years()
         self.assertTrue(len(books) == 5)
 
+    def test_no_start(self):
+        self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
+        books = self.data_source.books_between_years(None, 2000)
+        self.assertTrue(books[1].surname == "Christie")
+
+    def test_same_book(self):
+        self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
+        books = self.data_source.books()
+        self.assertTrue(books[0].__eq__(books[0]))
+
+    def test_one_book(self):
+        self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
+        books = self.data_source.books()
+        self.assertRaises(ValueError, books[0].__eq__())
+
+    def test_diff_books(self):
+        self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
+        books = self.data_source.books()
+        self.assertFalse(books[0].__eq__(books[1]))
+
+    def test_same_auth(self):
+        self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
+        authors = self.data_source.authors()
+        self.assertTrue(authors[0].__eq__(authors[0]))
+
+    def test_one_auth(self):
+        self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
+        authors = self.data_source.authors()
+        self.assertRaises(ValueError, authors[0].__eq__())
+
+    def test_diff_auths(self):
+        self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
+        authors = self.data_source.authors()
+        self.assertFalse(authors[0].__eq__(authors[1]))
+
 if __name__ == '__main__':
     unittest.main()
-
