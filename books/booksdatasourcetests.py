@@ -5,6 +5,8 @@
 
 import booksdatasource
 import unittest
+from books.booksdatasource import Author
+from books.booksdatasource import Book
 
 class BooksDataSourceTester(unittest.TestCase):
     def setUp(self):
@@ -21,10 +23,10 @@ class BooksDataSourceTester(unittest.TestCase):
     #tests whether the tiebreak of first name works
     def test_author_tiebreak(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest2.csv')
-        authors = self.data_source.authors("bront")
+        authors = self.data_source.authors('bront')
         self.assertTrue(len(authors) == 3)
-        self.assertTrue(authors[0].given_name == "Ann")
-        self.assertTrue(authors[2].given_name == "Emily")
+        self.assertTrue(authors[0] == Author('Brontë', 'Ann'))
+        self.assertTrue(authors[2]== Author('Brontë', 'Emily'))
 
     #tests with incorrect type for search_test
     def test_author_inttype(self):
@@ -34,13 +36,13 @@ class BooksDataSourceTester(unittest.TestCase):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         authors = self.data_source.authors()
         self.assertTrue(len(authors) == 5)
-        self.assertTrue(authors[0].surname == "Christie")
+        self.assertTrue(authors[0] == Author('Christie', 'Agatha'))
 
     def test_author_search(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         authors = self.data_source.authors("c")
-        self.assertTrue(authors[0].surname == "Christie")
-        self.assertTrue(authors[2].surname == "Willis")
+        self.assertTrue(authors[0] == Author('Christie', 'Agatha'))
+        self.assertTrue(authors[2] == Author('Willis', 'Connie'))
 
     def test_book_search(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
