@@ -48,6 +48,12 @@ class BooksDataSourceTester(unittest.TestCase):
         self.assertTrue(books[0].title == "Beloved")
         self.assertTrue(books[1].title == "Blackout")
 
+    def test_book_default_sort(self):
+        self.data_source = booksdatasource.BooksDataSource('booksTest2.csv')
+        books = self.data_source.books("w", "table")
+        self.assertTrue(books[0].title == "A Wild Sheep Chase")
+        self.assertTrue(books[1].title == "The Tenant of Wildfell Hall")
+
     def test_years_start(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         books = self.data_source.books_between_years(1987)
