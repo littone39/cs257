@@ -2,7 +2,7 @@
    booksdatasourcetest.py
    Emily Litton, Amir Al-Sheikh, 27 September 2021
 
-   This program tests code for program booksourcedata.py. 
+   This program runs tests on booksourcedata.py. 
 '''
 
 import booksdatasource
