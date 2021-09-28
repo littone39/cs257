@@ -1,6 +1,8 @@
 '''
    booksdatasourcetest.py
-   Jeff Ondich, 24 September 2021
+   Emily Litton, Amir Al-Sheikh, 27 September 2021
+
+   This program tests code for program booksourcedata.py. 
 '''
 
 import booksdatasource
@@ -26,7 +28,6 @@ class BooksDataSourceTester(unittest.TestCase):
         self.assertTrue(len(authors) == 5)
         self.assertTrue(authors[0] == Author('Christie', 'Agatha'))
 
-    #tests whether the tiebreak of first name works
     def test_author_tiebreak(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest2.csv')
         authors = self.data_source.authors('bront')
@@ -34,7 +35,6 @@ class BooksDataSourceTester(unittest.TestCase):
         self.assertTrue(authors[0] == Author('Brontë', 'Ann'))
         self.assertTrue(authors[2]== Author('Brontë', 'Emily'))
 
-    #tests with incorrect type for search_test
     def test_author_inttype(self):
         self.assertRaises(ValueError, self.data_source.authors, 1)
 
@@ -118,11 +118,6 @@ class BooksDataSourceTester(unittest.TestCase):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         authors = self.data_source.authors()
         self.assertRaises(ValueError, authors[0].__eq__())
-
-    def test_diff_auths(self):
-        self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
-        authors = self.data_source.authors()
-        self.assertFalse(authors[0].__eq__(authors[1]))
 
 if __name__ == '__main__':
     unittest.main()
