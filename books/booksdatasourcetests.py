@@ -25,7 +25,7 @@ class BooksDataSourceTester(unittest.TestCase):
     def test_author_search(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         authors = self.data_source.authors()
-        self.assertTrue(len(authors) == 5)
+        self.assertTrue(len(authors) == 4)
         self.assertTrue(authors[0] == Author('Christie', 'Agatha'))
 
     def test_author_tiebreak(self):
@@ -66,13 +66,13 @@ class BooksDataSourceTester(unittest.TestCase):
         self.data_source = booksdatasource.BooksDataSource('booksTest2.csv')
         books = self.data_source.books("th", "year")
         self.assertTrue(books[0] == Book('Wuthering Heights'))
-        self.assertTrue(books[1] == Book('Thief of Time'))
+        self.assertTrue(books[2] == Book('Thief of Time'))
 
     def test_years_inclusive(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest2.csv')
         books = books = self.data_source.books_between_years(1847, 1848)
-        self.assertTrue(books[0] == Book('Wuthering Height'))
-        self.assertTrue(books[0] == Book('The Tenant of Wildfell Hall'))
+        self.assertTrue(books[0] == Book('Wuthering Heights'))
+        self.assertTrue(books[1] == Book('The Tenant of Wildfell Hall'))
 
     def test_years_start(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
@@ -117,7 +117,7 @@ class BooksDataSourceTester(unittest.TestCase):
     def test_one_auth(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         authors = self.data_source.authors()
-        self.assertRaises(ValueError, authors[0].__eq__())
+        self.assertRaises(TypeError, authors[0].__eq__())
 
 if __name__ == '__main__':
     unittest.main()

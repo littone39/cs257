@@ -91,13 +91,18 @@ class BooksDataSource:
             returns all of the Author objects. In either case, the returned list is sorted
             by surname, breaking ties using given name (e.g. Ann Brontë comes before Charlotte Brontë).
         '''
+    
         if search_text == None:
             return sorted(self.allAuthors, key = lambda x: (x.surname, x.given_name))
+
+        if not str(search_text):
+            raise TypeError
+            return []
         
         results = []
         for author in self.allAuthors:
-            fullName = author.given_name + author.surname
-            if search_text in fullName:
+            fullName = (author.given_name + author.surname).lower()
+            if search_text.lower() in fullName:
                 results.append(author)
             
         results.sort(key = lambda x: (x.surname, x.given_name))
@@ -115,17 +120,18 @@ class BooksDataSource:
                 default -- same as 'title' (that is, if sort_by is anything other than 'year'
                             or 'title', just do the same thing you would do for 'title')
         '''
-  
+        bookList = []
+    
         if search_text != None:
             bookList = []
             for book in self.allBooks:
-                if search_text in book.title:
+                if search_text.lower() in book.title.lower():
                     bookList.append(book)
         else:
             bookList = self.allBooks
         
         if sort_by == 'year':
-            bookList.sort(key = lambda x: (x.year, x.title))
+            bookList.sort(key = lambda x: (x.publication_year, x.title))
         else:
             bookList.sort(key = lambda x: x.title)
         
@@ -149,12 +155,20 @@ class BooksDataSource:
             end_year = 3000
 
         results = []
+
         for book in self.allBooks:
+            
             if book.publication_year >= start_year and book.publication_year <= end_year:
+                print('inside')
                 results.append(book)
-        
+    
 
-        return results.sort(key = lambda x: (x.publication_year, x.title))
+        result = sorted(results, key = lambda x: (x.publication_year, x.title))
+        return result
 
 
-test = BooksDataSource('books1.csv')
+test = BooksDataSource('booksTest.csv')
+booktest = test.books_between_years()
+for book in booktest:
+    print(book.title)
+

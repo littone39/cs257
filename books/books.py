@@ -18,11 +18,17 @@ class Books:
     def search_years(self, start_year, end_year):
         return self.book_data.books_between_years(start_year, end_year)
 
+    def print_usage(self):
+        usage = open('usage.txt', 'r')
+        usage_statement = usage.read()
+        print(usage_statement)
+
 
 def main():
     mySearch = Books()
-    for arg in mySearch.args:
-        if arg[0] == '-'
+    if len(mySearch.args) == 0:
+        mySearch.print_usage()
+    #switch for rest of the statements
 
 if __name__ == "__main__":
     main()
