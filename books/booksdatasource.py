@@ -76,7 +76,7 @@ class BooksDataSource:
                     else:
                         endYear = int(endYear)
                     newAuthor = Author(surname, firstName, startYear, endYear)
-                    
+                    newAuthors.append(newAuthor)
                     if newAuthor not in self.allAuthors:
                         self.allAuthors.append(newAuthor)
     
@@ -97,7 +97,6 @@ class BooksDataSource:
 
         if not str(search_text):
             raise TypeError
-            return []
         
         results = []
         for author in self.allAuthors:
@@ -121,7 +120,6 @@ class BooksDataSource:
                             or 'title', just do the same thing you would do for 'title')
         '''
         bookList = []
-    
         if search_text != None:
             bookList = []
             for book in self.allBooks:
@@ -155,20 +153,11 @@ class BooksDataSource:
             end_year = 3000
 
         results = []
-
         for book in self.allBooks:
-            
             if book.publication_year >= start_year and book.publication_year <= end_year:
-                print('inside')
                 results.append(book)
-    
 
         result = sorted(results, key = lambda x: (x.publication_year, x.title))
         return result
 
-
-test = BooksDataSource('booksTest.csv')
-booktest = test.books_between_years()
-for book in booktest:
-    print(book.title)
 
