@@ -54,10 +54,12 @@ class BooksDataSource:
         with open(books_csv_file_name, 'r') as csvfile:
             readdata = csv.reader(csvfile)
             for row in readdata:
+                #add multiple authors
+                #for author in newauthors append authors
                 newAuthor = Author()
-                newBook = Book(row[0], row[1], [newAuthor])
+                newBook = Book(row[0], int(row[1]), [newAuthor])
                 self.books.append(newBook)
-        pass
+    
 
     def authors(self, search_text=None):
         ''' Returns a list of all the Author objects in this data source whose names contain
