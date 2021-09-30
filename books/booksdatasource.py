@@ -49,13 +49,13 @@ class BooksDataSource:
             suitable instance variables for the BooksDataSource object containing
             a collection of Author objects and a collection of Book objects.
         '''
-        self.authors = []
-        self.books = []
+        self.allAuthors = []
+        self.allBooks = []
         with open(books_csv_file_name, 'r') as csvfile:
             readdata = csv.reader(csvfile)
             for row in readdata:
                 newAuthors = []
-                authorNames = row[-1].split('and')
+                authorNames = row[-1].split(' and ')
                 for name in authorNames:
                     name = name.split(' ')
                     surname = name[-2]
@@ -65,7 +65,11 @@ class BooksDataSource:
                         firstName += i+ ' '
                     firstName = firstName[:-1]
                     years = name[-1].split('-')
-                    startYear = int(years[0][1:])
+                    startYear = years[0][1:]
+                    if startYear == '':
+                        startYear = None
+                    else:
+                        startYear = int(startYear)
                     endYear = years[1][:-1]
                     if endYear == '':
                         endYear = None
@@ -73,12 +77,12 @@ class BooksDataSource:
                         endYear = int(endYear)
                     newAuthor = Author(surname, firstName, startYear, endYear)
                     
-                    if newAuthor not in self.authors:
-                        self.authors.append(newAuthor)
+                    if newAuthor not in self.allAuthors:
+                        self.allAuthors.append(newAuthor)
     
                 
                 newBook = Book(row[0], int(row[1]), newAuthors)
-                self.books.append(newBook)
+                self.allBooks.append(newBook)
   
 
     def authors(self, search_text=None):
@@ -88,10 +92,10 @@ class BooksDataSource:
             by surname, breaking ties using given name (e.g. Ann Brontë comes before Charlotte Brontë).
         '''
         if search_text == None:
-            return sorted(self.authors, key = lambda x: (x.surname, x.given_name))
+            return sorted(self.allAuthors, key = lambda x: (x.surname, x.given_name))
         
         results = []
-        for author in self.authors:
+        for author in self.allAuthors:
             fullName = author.given_name + author.surname
             if search_text in fullName:
                 results.append(author)
@@ -114,11 +118,11 @@ class BooksDataSource:
   
         if search_text != None:
             bookList = []
-            for book in self.books:
+            for book in self.allBooks:
                 if search_text in book.title:
                     bookList.append(book)
         else:
-            bookList = self.books
+            bookList = self.allBooks
         
         if sort_by == 'year':
             bookList.sort(key = lambda x: (x.year, x.title))
@@ -145,7 +149,7 @@ class BooksDataSource:
             end_year = 3000
 
         results = []
-        for book in self.books:
+        for book in self.allBooks:
             if book.publication_year >= start_year and book.publication_year <= end_year:
                 results.append(book)
         
@@ -153,3 +157,4 @@ class BooksDataSource:
         return results.sort(key = lambda x: (x.publication_year, x.title))
 
 
+test = BooksDataSource('books1.csv')

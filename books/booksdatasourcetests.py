@@ -7,8 +7,8 @@
 
 import booksdatasource
 import unittest
-from books.booksdatasource import Author
-from books.booksdatasource import Book
+from booksdatasource import Author
+from booksdatasource import Book
 
 class BooksDataSourceTester(unittest.TestCase):
     def setUp(self):
@@ -36,7 +36,7 @@ class BooksDataSourceTester(unittest.TestCase):
         self.assertTrue(authors[2]== Author('Brontë', 'Emily'))
 
     def test_author_inttype(self):
-        self.assertRaises(ValueError, self.data_source.authors, 1)
+        self.assertRaises(TypeError, self.data_source.authors, 1)
 
     def test_author_text_search(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')

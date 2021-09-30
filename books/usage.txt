@@ -22,4 +22,5 @@ options:
         
     [string1] specifies search for [-a | -t | -y].
 
-    [string2] valid for use as the end range of publication dates with -y.
+    [string2] valid for use as the end range of publication dates with -y, 
+            or as a second tag in books to specify sort type.
