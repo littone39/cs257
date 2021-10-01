@@ -5,7 +5,7 @@ SYNOPSIS
 usage: python3 books.py [-a | -b | -y| -h] [search_string1] [search_string2]
 
 DESCRIPTION
-this program allows users to search a database of books. Users specify a category and 
+This program allows users to search a database of books. Users specify a category and 
 a string to search in that category. The program will print a list of books containing the 
 string in the corresponding category. 
 Invalid option choice or incorrect number of arguments for one of the search types will 
@@ -13,13 +13,18 @@ result in an error usage statement.
 
 options: 
      [-a | -t | -y| -h] flag that specifies what aspect of the book details the user is searching. 
-        -a or --author    searches book authors containing search_string1
-        -b or --book    searches book titles containing search_string1
-        -y or --year    searches for books published between years search_string1-search_string2 
-        -h or --help    prints out this usage statement (no further args) this is the default if 
+        -a or --author  searches book authors containing search_string1
+        -b or --book    searches book titles containing search_string1. If no search_string is specified,
+                        all books will be returned sorted alphabetically by title. 
+        -y or --year    searches for books published between years search_string1-search_string2. 
+                        If no years are specified, the program will return all books sorted by 
+                        publication date. If start year only is specified, all books published on or after 
+                        that year will be returned, and if end year only is specified all books published 
+                        on or before will be returned.
+        -h or --help    prints out this usage statement (no further arguments). Default if 
                         no category is specified.
         
-    [search_string1] specifies search for [-a | -b | -y].
+    [search_string1] Specifies search for [-a | -b | -y]. Use 'quotes' to search for strings containing spaces.
 
-    [search_string2] valid for use as the end range of publication dates with -y, 
+    [search_string2] Valid for use as the end range of publication dates with -y, 
             or as a second tag in books to specify sort type.

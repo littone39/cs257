@@ -34,10 +34,7 @@ class BooksDataSourceTester(unittest.TestCase):
         self.assertTrue(len(authors) == 3)
         self.assertTrue(authors[0] == Author('Brontë', 'Ann'))
         self.assertTrue(authors[2]== Author('Brontë', 'Emily'))
-    '''
-    def test_author_inttype(self):
-        self.assertRaises(TypeError, self.data_source.authors, 1)
-    '''
+
     def test_author_text_search(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         authors = self.data_source.authors("c")
@@ -90,20 +87,12 @@ class BooksDataSourceTester(unittest.TestCase):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         books = self.data_source.books_between_years(None, 2000)
         self.assertTrue(books[1] == Book("And Then There Were None"))
-    '''
-    def test_years_input(self):
-        self.assertRaises(ValueError, self.data_source.books_between_years, "title")
-    '''
+    
     def test_same_book(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         books = self.data_source.books()
         self.assertTrue(books[0].__eq__(books[0]))
-    '''
-    def test_one_book(self):
-        self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
-        books = self.data_source.books()
-        self.assertRaises(ValueError, books[0].__eq__())
-    '''
+
     def test_diff_books(self):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         books = self.data_source.books()
@@ -113,11 +102,6 @@ class BooksDataSourceTester(unittest.TestCase):
         self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
         authors = self.data_source.authors()
         self.assertTrue(authors[0].__eq__(authors[0]))
-    '''
-    def test_one_auth(self):
-        self.data_source = booksdatasource.BooksDataSource('booksTest.csv')
-        authors = self.data_source.authors()
-        self.assertRaises(TypeError, authors[0].__eq__())
-    '''
+    
 if __name__ == '__main__':
     unittest.main()

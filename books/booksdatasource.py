@@ -151,6 +151,12 @@ class BooksDataSource:
 
         if end_year == None:
             end_year = 3000
+        try:
+            start_year = int(start_year)
+            end_year = int(end_year)
+        except:
+            print("Please use int type to specify start year or end year. If start_year is None, then any book published before or end_year will be included. If end_year is None, then any book published after or during start_year will be included. If both are None, then all books will be included.")
+            exit()
 
         results = []
         for book in self.allBooks:
