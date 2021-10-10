@@ -7,10 +7,9 @@
 '''
 
 import booksdatasource
-import sys
 import argparse
 
-class Books:
+class BookSearchDispatcher:
     def __init__(self):
         #Initialize book class by parsing csv data into Books and Authors
         self.book_data = booksdatasource.BooksDataSource('books1.csv')
@@ -18,17 +17,23 @@ class Books:
     def search_authors(self, search_text=None):
         #searches for authors using given parameteres and prints results
         authors = self.book_data.authors(search_text)
+        print("Result of Author search:".upper())
         self.print_authors(authors)
+        print('\n')
         
     def search_books(self, search_text = None, sort_type=None):
         #searches for books using given parameters and prints results
         books = self.book_data.books(search_text, sort_type)
+        print("Result of Book search:".upper())
         self.print_books(books)
+        print('\n')
 
     def search_years(self, start_year=None, end_year=None):
         #passes parametes book_between_years method and prints results
         books = self.book_data.books_between_years(start_year, end_year)
+        print("Result of Books Between Years serach:".upper())
         self.print_books(books)
+        print('\n')
       
     def print_usage(self):
         #prints usage statement 
@@ -38,56 +43,78 @@ class Books:
         exit()
         
     def print_books(self, Books):
-        #prints list of books formatted 'Title: [title] Publication year: [year] Author(s): [name]'
+        #prints list of books formatted '[title] ([year]) by Author(s): [name]'
         for book in Books:
             author_string = ''
             for author in book.authors:
                 author_string += author.given_name + ' ' + author.surname + ' and '
             author_string = author_string[:-5]
-            print('Title: ' + book.title + ' Publication year:' + str(book.publication_year) + ' Author: ' + author_string)
+            print( book.title + ' (' + str(book.publication_year) + ') by ' + author_string)
 
     def print_authors(self, Authors):
-        #prints list of authors formatted 'Name: [name] (birth year - death year)
+        #prints list of authors formatted '[name] (birth year - death year)'
         for author in Authors:
-            print('Name: '+author.given_name + ' ' + author.surname + '(' + str(author.birth_year) + '-' +str(author.death_year) + ')')
+            print(author.given_name + ' ' + author.surname + ' (' + str(author.birth_year) + '-' +str(author.death_year) + ')')
+
+    def get_parsed_arguments(self):
+        parser = argparse.ArgumentParser(description='Searches book database', add_help=False)
+        parser.add_argument('-a', '--author', nargs='*', help='tag for searching authors')
+        parser.add_argument('-b', '--book', nargs='*', help='tag for searching books')
+        parser.add_argument('-y', '--year', nargs='*', help='tag for searching books')
+        parser.add_argument('-h', '--help', action='store_true', help='tag for usage')
+        parsed_args = parser.parse_args()
+        return parsed_args
 
 def main():
-    my_search = Books() #creates instance of books class that will be used to query command line arguments
+    dispatch = BookSearchDispatcher() #creates instance of BookSearchDispatcher class that will be used to query command line arguments
     
-    if len(sys.argv) == 1: #empty command line call should print usage statement
-        my_search.print_usage()
-    elif sys.argv[1] == '-a' or  sys.argv[1] == '--author': #tests for author flag and handles cases of author calls
-        if len(sys.argv) == 3:
-            my_search.search_authors(sys.argv[2])
-        elif len(sys.argv) == 2:
-            my_search.search_authors()
-        else:
+    arguments = dispatch.get_parsed_arguments()
+    printed = False #printed boolean flips to true if any of the command line flags have been triggered
+    
+    # searches authors if -a or --author is present in command line
+    if arguments.author is not None:
+        args = arguments.author
+        printed = True 
+        if len(args) > 1:
             print("Wrong number of arguments given for author search, see usage statement below:")
-            my_search.print_usage()
-    elif sys.argv[1] == '-b' or sys.argv[1] == '--book': #tests for book flag and handles cases of book calls
-        if len(sys.argv) == 3:
-            my_search.search_books(sys.argv[2])
-        elif len(sys.argv) == 4:
-            my_search.search_books(sys.argv[2],sys.argv[3])
-        elif len(sys.argv) == 2:
-            my_search.search_books()
+            dispatch.print_usage()
+        elif len(args) == 0:
+            dispatch.search_authors()
         else:
+            dispatch.search_authors(args[0])
+
+    if arguments.book is not None:
+        printed = True
+        args = arguments.book
+        if len(args) > 2:
             print("Wrong number of arguments given for book search, see usage statement below:")
-            my_search.print_usage() 
-    elif sys.argv[1] == '-y' or sys.argv[1] == '--year': #tests for year flag and handles cases for books_between_years calls
-        if len(sys.argv) == 4:
-            my_search.search_years(sys.argv[2], sys.argv[3])
-        elif len(sys.argv) == 3:
-            my_search.search_years(sys.argv[2])
-        elif len(sys.argv) == 2:
-            my_search.search_years()
+            dispatch.print_usage()
+        elif len(args) == 2:
+            dispatch.search_books(args[0], args[1])
+        elif len(args) == 1:
+            dispatch.search_books(args[0])
         else:
-            print("Wrong number of arguments given for book search, see usage statement below:")
-            my_search.print_usage() 
-    elif sys.argv[1] == '-h' or sys.argv[1] == '--help': #help flag returns usage statement
-        my_search.print_usage() 
-    else: #wrong number of arguments or invalid option choice prints usage statement
-        my_search.print_usage() 
+            dispatch.search_books()
+
+    if arguments.year is not None:
+        printed = True
+        args = arguments.year
+        if len(args) > 2:
+            print("Wrong number of arguments given for book between year search, see usage statement below:")
+            dispatch.print_usage()
+        elif len(args) == 2:
+            dispatch.search_years(args[0], args[1])
+        elif len(args) == 1:
+            dispatch.search_years(args[0])
+        else:
+            dispatch.search_years()
+
+    if arguments.help: #print usage statement if help flag indicated
+        printed = True
+        dispatch.print_usage()
+
+    if not printed: #empty command line call should print usage statement
+        dispatch.print_usage()
 
 
 if __name__ == "__main__":

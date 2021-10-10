@@ -55,9 +55,9 @@ class BooksDataSource:
             readdata = csv.reader(csvfile)
             for row in readdata:
                 newAuthors = []
-                authorNames = row[-1].split(' and ')
+                authorNames = row[-1].split(' and ') #splits multiple author names
                 for name in authorNames:
-                    name = name.split(' ')
+                    name = name.split(' ') 
                     surname = name[-2]
                     givenName = name[:-2]
                     firstName = ''
@@ -146,10 +146,10 @@ class BooksDataSource:
             during start_year should be included. If both are None, then all books
             should be included.
         '''
-        if start_year == None:
+        if start_year == None or start_year == 'None':
             start_year = 0
 
-        if end_year == None:
+        if end_year == None or end_year == 'None':
             end_year = 3000
         try:
             start_year = int(start_year)
