@@ -16,13 +16,18 @@ options:
      [-a | -t | -y| -h] flag that specifies what aspect of the book details the user is searching. 
         -a or --author  searches book authors containing search_term1. If no search_term1 is specified,
                         the program will print a list of all authors.
-        -b or --book    searches book titles containing search_term1. If no search_term1 is specified,
-                        all books will be returned sorted alphabetically by title. 
+        -b or --book    searches for books containing search_term1 in the title. By default the program
+                        will print the resulting books alphabetically by title. The user can choose to sort
+                        books by publication year by specifying search_term2 as the string year. If 
+                        search_term1 is not specified, the program will print all books. To 
+                        print all books sorted by year, enter the empty string '' in place of search_string1 
+                        and year as search_term2 (e.g. python3 books.py '' year). 
         -y or --year    searches for books published between years search_term1-search_term2. 
                         If no years are specified, the program will return all books sorted by 
                         publication date. If start year only is specified, all books published on or after 
-                        that year will be returned, and if end year only is specified (ex. -y None 2000) all books published 
-                        on or before will be returned.
+                        that year will be returned, and if end year only is specified 
+                        (e.g. python3 books.py -y None 2000) all books published on or before will 
+                        be returned.
         -h or --help    prints out this usage statement (no further arguments). Default if 
                         no category is specified.
         

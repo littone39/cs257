@@ -66,9 +66,9 @@ class BookSearchDispatcher:
         return parsed_args
 
 def main():
-    dispatch = BookSearchDispatcher() #creates instance of BookSearchDispatcher class that will be used to query command line arguments
+    dispatcher = BookSearchDispatcher() #creates instance of BookSearchDispatcher class that will be used to query command line arguments
     
-    arguments = dispatch.get_parsed_arguments()
+    arguments = dispatcher.get_parsed_arguments()
     printed = False #printed boolean flips to true if any of the command line flags have been triggered
     
     # searches authors if -a or --author is present in command line
@@ -77,35 +77,30 @@ def main():
         printed = True 
         if len(args) > 1:
             print("Wrong number of arguments given for author search, see usage statement below:")
-            dispatch.print_usage()
-        args.append(None)
-        dispatch.search_authors(args[0])
+            dispatcher.print_usage()
+        args.append(None) # adds None to the list to avoid indexing into an empty list
+        dispatcher.search_authors(args[0])
 
     if arguments.book is not None:
         printed = True
-        args = arguments.book
+        args = arguments.book 
         if len(args) > 2:
             print("Wrong number of arguments given for book search, see usage statement below:")
-            dispatch.print_usage()
+            dispatcher.print_usage()
         args = args + [None,None]
-        dispatch.search_books(args[0], args[1])
-
+        dispatcher.search_books(args[0], args[1])
 
     if arguments.year is not None:
         printed = True
         args = arguments.year
         if len(args) > 2:
             print("Wrong number of arguments given for book between year search, see usage statement below:")
-            dispatch.print_usage()
+            dispatcher.print_usage()
         args = args + [None,None]
-        dispatch.search_years(args[0], args[1])
+        dispatcher.search_years(args[0], args[1])
 
-    if arguments.help: #print usage statement if help flag indicated
-        printed = True
-        dispatch.print_usage()
-
-    if not printed: #empty command line call should print usage statement
-        dispatch.print_usage()
+    if arguments.help or not printed: #print usage statement if help flag indicated or if command line empty
+        dispatcher.print_usage()
 
 
 if __name__ == "__main__":
