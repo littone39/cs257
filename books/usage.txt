@@ -18,10 +18,10 @@ options:
                         the program will print a list of all authors.
         -b or --book    searches for books containing search_term1 in the title. By default the program
                         will print the resulting books alphabetically by title. The user can choose to sort
-                        books by publication year by specifying search_term2 as the string year. If 
+                        books by publication year by entering 'year' for search_term2. If 
                         search_term1 is not specified, the program will print all books. To 
                         print all books sorted by year, enter the empty string '' in place of search_string1 
-                        and year as search_term2 (e.g. python3 books.py '' year). 
+                        and 'year' as search_term2 (e.g. python3 books.py '' year).
         -y or --year    searches for books published between years search_term1-search_term2. 
                         If no years are specified, the program will return all books sorted by 
                         publication date. If start year only is specified, all books published on or after 
