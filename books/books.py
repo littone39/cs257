@@ -31,7 +31,7 @@ class BookSearchDispatcher:
     def search_years(self, start_year=None, end_year=None):
         #passes parametes book_between_years method and prints results
         books = self.book_data.books_between_years(start_year, end_year)
-        print("Result of Books Between Years serach:".upper())
+        print("Result of Books Between Years search:".upper())
         self.print_books(books)
         print('\n')
       
@@ -78,10 +78,8 @@ def main():
         if len(args) > 1:
             print("Wrong number of arguments given for author search, see usage statement below:")
             dispatch.print_usage()
-        elif len(args) == 0:
-            dispatch.search_authors()
-        else:
-            dispatch.search_authors(args[0])
+        args.append(None)
+        dispatch.search_authors(args[0])
 
     if arguments.book is not None:
         printed = True
@@ -89,12 +87,9 @@ def main():
         if len(args) > 2:
             print("Wrong number of arguments given for book search, see usage statement below:")
             dispatch.print_usage()
-        elif len(args) == 2:
-            dispatch.search_books(args[0], args[1])
-        elif len(args) == 1:
-            dispatch.search_books(args[0])
-        else:
-            dispatch.search_books()
+        args = args + [None,None]
+        dispatch.search_books(args[0], args[1])
+
 
     if arguments.year is not None:
         printed = True
@@ -102,12 +97,8 @@ def main():
         if len(args) > 2:
             print("Wrong number of arguments given for book between year search, see usage statement below:")
             dispatch.print_usage()
-        elif len(args) == 2:
-            dispatch.search_years(args[0], args[1])
-        elif len(args) == 1:
-            dispatch.search_years(args[0])
-        else:
-            dispatch.search_years()
+        args = args + [None,None]
+        dispatch.search_years(args[0], args[1])
 
     if arguments.help: #print usage statement if help flag indicated
         printed = True
