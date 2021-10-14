@@ -23,52 +23,58 @@ import csv
 with open('athlete_events.csv', 'r') as csvfile:
     readdata = csv.reader(csvfile)
     next(readdata)
-    athlete_ids =[]
-    oly_games = {}
-    games_id = 0
-    event_id = 0
     
+    athlete_ids =[] # list of athlete ids to avoid duplicates
+    oly_games = {} # dictionary of olympic games to avoid duplicates
+    games_id = 0 # count for creating games ids 
+    event_id = 0 # count for event ids 
+
+    # cretating all the csv files  
+    athlete_f = open('athletes.csv', 'w')
+    athlete_writer = csv.writer(athlete_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     
-    with open('athletes.csv', 'w') as athlete_f:
-        athlete_writer = csv.writer(athlete_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        with open('events.csv', 'w') as events_f:
-            event_writer = csv.writer(events_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            with open('events_athletes.csv', 'w') as athlete_event_f:
-                athlete_event_writer = csv.writer(athlete_event_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                with open('games.csv', 'w') as games_f:
-                    games_writer = csv.writer(games_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                    with open('events_games.csv', 'w') as events_games_f:
-                        events_games_writer = csv.writer(events_games_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                        
-                        for row in readdata:
-                            for i in range(len(row)):
-                                if row[i] == 'NA':
-                                    row[i] = 'NULL'
-                            athlete_id, full_name, sex, age, height, weight, team, noc, games, year, season, city, sport, event, medal = row
-                            event_id += 1
-                            event_writer.writerow([event_id, noc, sport, event, medal]) #write event to file
-                            athlete_event_writer.writerow([event_id, athlete_id]) #connect athlete id and event id
-                            surname = full_name.split(' ')[-1] 
-                            if len(surname) > 0:
-                                if surname[0] == '(':
-                                    surname = full_name.split(' ')[-2]
+    events_f = open('events.csv', 'w') 
+    event_writer = csv.writer(events_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        
+    athlete_event_f = open('events_athletes.csv', 'w') 
+    athlete_event_writer = csv.writer(athlete_event_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                
+    games_f = open('games.csv', 'w')
+    games_writer = csv.writer(games_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                    
+    events_games_f = open('events_games.csv', 'w')
+    events_games_writer = csv.writer(events_games_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-                            if athlete_id not in athlete_ids:
-                                athlete_writer.writerow([athlete_id, surname, full_name, sex, age, height, weight]) #add athlete if not there
-                                athlete_ids.append(athlete_id) 
-                            if games not in oly_games.keys(): #add game if not already added and connect games with events
-                                games_id += 1
-                                games_writer.writerow([games_id, year, season, city]) 
-                                oly_games[games] = games_id
-                                events_games_writer.writerow([event_id, games_id]) 
-                            else:
-                                events_games_writer.writerow([event_id, oly_games[games]]) 
-                                # get games id 
+    # writing in the files               
+    for row in readdata:
+        for i in range(len(row)):
+            if row[i] == 'NA':
+                row[i] = 'NULL'
+        athlete_id, full_name, sex, age, height, weight, team, noc, games, year, season, city, sport, event, medal = row
+        event_id += 1
+        event_writer.writerow([event_id, noc, sport, event, medal]) #write event to file
+        athlete_event_writer.writerow([event_id, athlete_id]) #connect athlete id and event id
+        surname = full_name.split(' ')[-1] 
+        if len(surname) > 0:
+            if surname[0] == '(':
+                surname = full_name.split(' ')[-2]
 
-                    events_games_f.close()
-                games_f.close()
-            athlete_event_f.close()
-        events_f.close()
+        if athlete_id not in athlete_ids:
+            athlete_writer.writerow([athlete_id, surname, full_name, sex, age, height, weight]) #add athlete if not there
+            athlete_ids.append(athlete_id) 
+        if games not in oly_games.keys(): #adds game if not already added and connect games with events
+            games_id += 1
+            games_writer.writerow([games_id, year, season, city]) 
+            oly_games[games] = games_id
+            events_games_writer.writerow([event_id, games_id]) 
+        else:
+            # get games id and connect to event
+            events_games_writer.writerow([event_id, oly_games[games]])  
+
+    events_games_f.close()
+    games_f.close()
+    athlete_event_f.close()
+    events_f.close()
     athlete_f.close()
 
 csvfile.close()
@@ -77,11 +83,15 @@ csvfile.close()
 with open('noc_regions.csv') as noc_regions:
     readdata = csv.reader(noc_regions)
     next(readdata)
-    with open('noc_countries.csv', 'w') as noc_countries:
-        noc_writer = csv.writer(noc_countries, delimiter=',', quotechar='"',quoting=csv.QUOTE_MINIMAL)
-        for row in readdata:
-            noc_writer.writerow([row[0], row[1]])
+    
+    noc_countries = open('noc_countries.csv', 'w') 
+    noc_writer = csv.writer(noc_countries, delimiter=',', quotechar='"',quoting=csv.QUOTE_MINIMAL)
+    
+    for row in readdata:
+        noc_writer.writerow([row[0], row[1]])
+    
     noc_countries.close()
+
 noc_regions.close()
 
 
