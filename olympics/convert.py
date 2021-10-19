@@ -25,7 +25,8 @@ with open('athlete_events.csv', 'r') as csvfile:
     next(readdata)
     
     athlete_ids =[] # list of athlete ids to avoid duplicates
-    oly_games = {} # dictionary of olympic games to avoid duplicates
+    oly_games = {} # dictionary of olympic games to avoid duplicates\
+    events = {}
     games_id = 0 # count for creating games ids 
     event_id = 0 # count for event ids 
 
@@ -35,15 +36,12 @@ with open('athlete_events.csv', 'r') as csvfile:
     
     events_f = open('events.csv', 'w') 
     event_writer = csv.writer(events_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        
-    athlete_event_f = open('events_athletes.csv', 'w') 
-    athlete_event_writer = csv.writer(athlete_event_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                
+                    
     games_f = open('games.csv', 'w')
     games_writer = csv.writer(games_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                     
-    events_games_f = open('events_games.csv', 'w')
-    events_games_writer = csv.writer(events_games_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    performance_f = open('performances.csv', 'w')
+    performance_writer = csv.writer(performance_f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     # writing in the files               
     for row in readdata:
@@ -51,29 +49,31 @@ with open('athlete_events.csv', 'r') as csvfile:
             if row[i] == 'NA':
                 row[i] = 'NULL'
         athlete_id, full_name, sex, age, height, weight, team, noc, games, year, season, city, sport, event, medal = row
-        event_id += 1
-        event_writer.writerow([event_id, noc, sport, event, medal]) #write event to file
-        athlete_event_writer.writerow([event_id, athlete_id]) #connect athlete id and event id
+        #event_id += 1
+        #event_writer.writerow([event_id, noc, sport, event, medal]) #write event to file
+        #athlete_event_writer.writerow([event_id, athlete_id]) #connect athlete id and event id
         surname = full_name.split(' ')[-1] 
         if len(surname) > 0:
             if surname[0] == '(':
                 surname = full_name.split(' ')[-2]
 
         if athlete_id not in athlete_ids:
-            athlete_writer.writerow([athlete_id, surname, full_name, sex, age, height, weight]) #add athlete if not there
+            athlete_writer.writerow([athlete_id, surname, full_name, sex]) #add athlete if not there
             athlete_ids.append(athlete_id) 
         if games not in oly_games.keys(): #adds game if not already added and connect games with events
             games_id += 1
             games_writer.writerow([games_id, year, season, city]) 
-            oly_games[games] = games_id
-            events_games_writer.writerow([event_id, games_id]) 
-        else:
-            # get games id and connect to event
-            events_games_writer.writerow([event_id, oly_games[games]])  
+            oly_games[games] = games_id 
+        if event not in events.keys():
+            event_id += 1
+            event_writer.writerow([event_id, sport, event])  
+            events[event] = event_id
 
-    events_games_f.close()
+        performance_writer.writerow([athlete_id, events[event], oly_games[games], height, weight, noc, medal])
+        
+
     games_f.close()
-    athlete_event_f.close()
+    performance_f.close()
     events_f.close()
     athlete_f.close()
 

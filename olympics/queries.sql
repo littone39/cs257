@@ -14,28 +14,24 @@ This file contains query commands for the olympics database.
 SELECT noc_countries.noc FROM noc_countries
 ORDER BY noc_countries.noc;
 
-SELECT athletes.full_name, noc_countries.country_name 
-FROM athletes, events, noc_countries, events_athletes
-WHERE noc_countries.country_name LIKE 'Kenya'
-AND noc_countries.noc = events.noc
-AND athletes.id = events_athletes.athlete_id
-AND events.id = events_athletes.event_id
+SELECT DISTINCT athletes.surname, athletes.full_name, noc_countries.country_name 
+FROM athletes, performances, noc_countries
+WHERE athletes.id = performances.athlete_id
+AND performances.noc = noc_countries.noc
+AND noc_countries.country_name LIKE 'Kenya'
 ORDER BY athletes.surname;
 
-SELECT athletes.full_name, events.medal, 
-    events.event_competed, games.city, games.competition_year
-FROM athletes, events, games, events_athletes, events_games
+SELECT athletes.full_name, performances.medal, events.event_competed, games.competition_year
+FROM athletes, performances, games, events
 WHERE athletes.surname LIKE 'Louganis'
-AND athletes.id = events_athletes.athlete_id
-AND events.id = events_athletes.event_id
-AND events.id = events_games.event_id
-AND games.id = events_games.game_id
-AND events.medal LIKE '%'
+AND athletes.id = performances.athlete_id
+AND performances.medal LIKE '%'
+AND performances.game_id = games.id
+AND performances.event_id = events.id
 ORDER BY games.competition_year;
 
-SELECT noc_countries.noc, COUNT(events)
-FROM noc_countries, events
-WHERE events.medal LIKE 'Gold'
-AND noc_countries.noc = events.noc
-GROUP BY noc_countries.noc
-ORDER BY COUNT(events) DESC;
+SELECT performances.noc, COUNT(performances.medal)
+FROM performances
+WHERE performances.medal LIKE 'Gold'
+GROUP BY performances.noc
+ORDER BY COUNT(performances.noc) DESC;
