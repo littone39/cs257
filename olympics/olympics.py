@@ -38,6 +38,7 @@ class OlympicSearchDispatcher:
         if noc is None:
             print('Please specify an NOC to see corresponding athletes.')
             self.print_usage()
+
         else:
             noc_string = noc.lower()
             query = '''SELECT DISTINCT athletes.full_name, performances.noc 
@@ -55,20 +56,17 @@ class OlympicSearchDispatcher:
             for row in self.cursor:
                 print(row[0], row[1])
 
-            return self.cursor 
-
     def search_sport_events(self, sport):
         ''' searches database for events that were competed in a given sport and prints a list
         of those events. '''
-
         if sport is None:
             self.print_usage()
+        
         sport_string = sport.lower()
         query = '''SELECT events.event_competed 
                     FROM events
                     WHERE LOWER(events.sport) LIKE %s 
                     ORDER BY events.event_competed'''
-        
         try:
             self.cursor.execute(query, (sport_string,))
         except Exception as e:
@@ -78,14 +76,13 @@ class OlympicSearchDispatcher:
         print('===== {0} Events ====='.format(sport_string))
         for row in self.cursor:
             print(row[0])
- 
 
     def search_NOC_medals(self, medal='gold'):
         ''' prints a list of nocs and their medal counts 
-        for a given medal color (defaults to gold if no medal color provided) '''
-        
+        for a given medal color (defaults to gold if no medal color provided)
+        prints error message and usage statement if medal color is not 'gold', 'silver'
+        or 'bronze' (case-insensitive). '''
         medal_color = medal.lower()
-        
         if medal_color not in ['gold', 'silver', 'bronze']:
             print('''Invalid medal type, please try again with "gold", "silver", "bronze" or 
                     specify no color to print gold medal counts.''')
@@ -96,12 +93,13 @@ class OlympicSearchDispatcher:
                     WHERE LOWER(performances.medal) LIKE %s
                     GROUP BY performances.noc
                     ORDER BY COUNT(performances.noc) DESC;'''
+        
         try:
             self.cursor.execute(query, (medal_color, ))
         except Exception as e:
             print(e)
             exit()
-
+        
         print('===== NOCs and {0} medal count====='.format(medal_color))
         for row in self.cursor:
             print(row[0], row[1])
