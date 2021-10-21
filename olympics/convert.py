@@ -49,9 +49,7 @@ with open('athlete_events.csv', 'r') as csvfile:
             if row[i] == 'NA':
                 row[i] = 'NULL'
         athlete_id, full_name, sex, age, height, weight, team, noc, games, year, season, city, sport, event, medal = row
-        #event_id += 1
-        #event_writer.writerow([event_id, noc, sport, event, medal]) #write event to file
-        #athlete_event_writer.writerow([event_id, athlete_id]) #connect athlete id and event id
+        # get surname
         surname = full_name.split(' ')[-1] 
         if len(surname) > 0:
             if surname[0] == '(':
@@ -70,7 +68,6 @@ with open('athlete_events.csv', 'r') as csvfile:
             events[event] = event_id
 
         performance_writer.writerow([athlete_id, events[event], oly_games[games], height, weight, noc, medal])
-        
 
     games_f.close()
     performance_f.close()

@@ -1,0 +1,31 @@
+NAME
+olympics.py -- program that searches a database of olympic performances.
+
+SYNOPSIS
+usage:  python3 olympics.py [-a | -e] <search_term>
+        python3 olympics.py -m [search_term]
+        python3 olympics.py -h
+
+DESCRIPTION 
+User specifies a flag and a search_term that will produce a list of results to be printed to the screen. 
+No flag or search_term will print this usage statement. Multiple or unexpected search_term(s) will result 
+in an error message. If the user specifies more than one flag, the program will return only the results for 
+the first flag present in this order: (-a, -m, -e). The usage statement will be printed if no flag is 
+specified. search_term is case-insensitive. 
+
+options: 
+    [-a | -m | -e | -h]
+
+    -a or --athletes returns a list of athletes that competed for a specified NOC. Use search_term to 
+            specify which NOC user would like to see athletes. If no search_term is specified,
+            the program will print an error message and this usage statement.
+    -m or --medals returns a list of NOCs and the number of a specified medal type each NOC won. 
+            Specify search_term as 'Gold', 'Silver', or 'Bronze' (case insensitive)
+            to view medal count for specified medal color for all NOCs in descending order of medals earned. 
+            If search_term is not one of those options, program will print an error message and 
+            this usage statement. Program default will list count of gold medals for each NOC if 
+            no search_term is specified.
+    -e or --events will return a list of events for a specified sport. if search_term is not a 
+            valid sport, the list will be empty. No search_term will print an error message and this 
+            usage statement.
+    -h or --help or no flag will print out this usage statement. 
