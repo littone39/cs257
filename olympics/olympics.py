@@ -2,15 +2,17 @@
 olympics.py
 Emily Litton, October 20, 2021
 
-This program is a command line interface for the sql olympics database. Usage 
-for this CLI is specified in usage.txt. The required functions can be accessed 
+This program is a command line interface for the olympics database (found in olympics.sql). Usage 
+for this CLI is specified in usage.txt. The functions required for the assignment can be accessed 
 via the following commands:
 
-1) print usage: python3 olympics.py -h
-2) list names of athletes from specified NOC (NOC_string): python3 olympics.py -a <NOC_string>
+1) print usage: 
+    python3 olympics.py -h
+2) list names of athletes from specified NOC (NOC_string): 
+    python3 olympics.py -a <NOC_string>
 3) list NOCs and number of gold medals they have won in descending order: 
     python3 olympics.py -m
-4) other functionality (see usage.txt for specifics):
+4) other functionalities (see usage.txt for specifics):
     - list all the events associated with specified sport
     - list NOCs and number of silver or bronze medals won in descending order
 '''
@@ -19,7 +21,6 @@ import psycopg2
 from config import database
 from config import user
 from config import password
-#import sys
 import argparse
 
 class OlympicSearchDispatcher:
@@ -121,6 +122,9 @@ class OlympicSearchDispatcher:
         return parsed_args
 
 def main():
+    ''' Creates instance of OlympicSearchDispatcher, and using that instance, parses command line 
+        arguments, executes search, and prints error messages/usage statement
+        as necessary (functionality described in usage.txt). '''
     dispatcher = OlympicSearchDispatcher()
     arguments = dispatcher.get_parsed_arguments()
    
