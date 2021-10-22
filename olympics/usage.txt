@@ -20,7 +20,7 @@ options:
             specify which NOC user would like to see athletes. If no search_term is specified,
             the program will print an error message and this usage statement.
     -m or --medals returns a list of NOCs and the number of a specified medal type each NOC won. 
-            Specify search_term as 'Gold', 'Silver', or 'Bronze' (case insensitive)
+            Specify search_term as 'Gold', 'Silver', or 'Bronze' (case-insensitive)
             to view medal count for specified medal color for all NOCs in descending order of medals earned. 
             If search_term is not one of those options, program will print an error message and 
             this usage statement. Program default will list count of gold medals for each NOC if 
