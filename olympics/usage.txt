@@ -10,7 +10,7 @@ DESCRIPTION
 User specifies a flag and a search_term that will produce a list of results to be printed to the screen. 
 No flag or search_term will print this usage statement. Multiple or unexpected search_term(s) will result 
 in an error message. If the user specifies more than one flag, the program will return only the results for 
-the first flag present in this order: (-a, -m, -e). The usage statement will be printed if no flag is 
+the first flag present in this order: (-a, -m, -e, -h). The usage statement will be printed if no flag is 
 specified. search_term is case-insensitive. 
 
 options: 

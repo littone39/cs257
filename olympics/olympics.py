@@ -94,7 +94,6 @@ class OlympicSearchDispatcher:
                     WHERE LOWER(performances.medal) LIKE %s
                     GROUP BY performances.noc
                     ORDER BY COUNT(performances.noc) DESC;'''
-        
         try:
             self.cursor.execute(query, (medal_color, ))
         except Exception as e:
