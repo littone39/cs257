@@ -1,0 +1,42 @@
+NAMES: Jayti Arora, Emily Litton
+
+DATASET: https://www.kaggle.com/ajaypalsinghlo/world-happiness-report-2021?select=world-happiness-report.csv
+    Our dataset contains data from the World Happiness Report using data from the Gallup World Poll. 
+    There are two csv files, one contains happiness scores and information from 166 different countries 
+    for years 2005-2020, the second contains happiness scores and more extensive data for the year
+    2021.
+
+STORY: As an economist I want to reasearch how GDP per capita impacts the overall happiness per country so 
+that I can analyze trends among countries.
+
+IMPLEMENTATION: We were thinking of having a graph with a drop down menu on the x and y axes where the
+user can filter the categories that they want to compare between per country. So in this case, the two 
+selected would be the GDP per capita and the Life Ladder. Countries are plotted as individual dots on the
+scatterplot, and users can click on dots to see what country they represent. 
+
+STORY: As a policymaker in Canada, I am looking to see how our country''s happiness has changed over the past 
+15 years. I am curious what factors may have affected the happiness, and I want to determine what my have 
+caused any changes. 
+
+IMPLEMENTATION: For this we could have a map of the world, and one could click on a country to display 
+information about that country. This would be in the form of a graph, with the most important variables
+and their trends over time. This would allow the user to see how the trends interact with one another and 
+possibly see some correlation between different measured factors. 
+
+STORY: As a world health expert, I am looking to see how life expectancy and health is correlated to 
+happiness. 
+
+IMPLEMENTATION: Similar to the first story, we will have a graph with x and y axes that have drop 
+down menu functionality. The countries would be plotted as individual dots in a scatterplot. In 
+This case, happiness score would be selected on one axis, and life expectancy would be selected on the 
+other axis. They could then select other factors and compare life expectancy and happiness to social 
+support scores to gather a fuller picture.
+
+STORY: As someone looking to move to a new country I want to know the geniousity level and social support
+of where I may potentially move so that I will know what kind of neighbors I would be surrounded by and whether I would 
+feel welcomed in that enviornment or not. 
+
+IMPLEMENTATION: We are thinking of having a map feature of the world where the user can click on the countries to get 
+information about that country displayed. By clicking on multiple countries, their data will be displayed in boxes next 
+to each other so that the user can compare. This user could click on the countries they are looking to move to and compare
+which place would be most suitable for them. 
