@@ -11,7 +11,30 @@
 </head>
 
 <body>
-    <nav>
+    <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">World Happiness</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Map</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Graph</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!--
+      <nav>
         <a id="Home">World Happiness</a>
         <ul >
             <li><a href="#">Home</a></li>
@@ -19,11 +42,14 @@
             <li><a href="#">Graph</a></li>
         </ul>
     </nav>
+    -->
     
-    <p>Welcome! Click on a country to display information about country happiness, 
+    <p>
+        Welcome! Click on a country to display information about country happiness, 
         economics, and wellbeing. If you would like to graph country information, 
-        scroll down to graph or navigate using the bar above. All data from
-         Gallup World Happiness Report. </p>
+        scroll down to graph or navigate using the bar above. All data is from
+        Gallup World Happiness Report. 
+    </p>
 
     <!--Interactive Map-->
     <div id="Map" class="container">
