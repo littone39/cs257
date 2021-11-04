@@ -1,0 +1,124 @@
+/* CS257: Software Design
+Emily Litton and Jayti Arora
+November 4th, 2021*/
+
+/* title{
+    float:left;
+    font-size:large;
+}
+nav.horizontal-navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+
+nav.horizontal-navbar ul li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    float: right;
+}
+
+nav.horizontal-navbar ul li a:hover {
+    background-color: #555;
+    color: white;
+} */
+
+.container {
+    position: relative;
+    width: 80%;
+  }
+  
+  /* Make the image responsive */
+  .container img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Style the button and place it in the middle of the container/image */
+  .container .button {
+    position: absolute;
+    top: 38%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: rgb(47, 163, 56);
+    color: white;
+    font-size: 20px;
+    color:black;
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+
+  }
+  
+  
+  .container .button:hover {
+    background-color: black;
+  }
+
+  #Graph{
+      width:80%
+  }
+
+  #myCanvas{
+      background-color: blue;
+      width: 40%;
+      height: 40%;
+      position: absolute;
+      left: 20%;
+      padding-top: 40px;
+  }
+
+
+  /* Dropdown Button */
+.dropbtn {
+    background-color: #005838;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
