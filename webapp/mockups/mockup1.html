@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg">
+    <nav id="nav" class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">World Happiness</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,13 +20,13 @@
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="#home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Map</a>
+                <a class="nav-link" href="#map">Map</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Graph</a>
+                <a class="nav-link" href="#graph">Graph</a>
               </li>
             </ul>
           </div>
@@ -43,23 +43,27 @@
         </ul>
     </nav>
     -->
-    
-    <p>
-        Welcome! Click on a country to display information about country happiness, 
+    <div id="home" class="welcome">
+        <p>
+        <strong>Welcome!</strong> Click on a country to display information about country happiness, 
         economics, and wellbeing. If you would like to graph country information, 
         scroll down to graph or navigate using the bar above. All data is from
         Gallup World Happiness Report. 
-    </p>
+        </p>
+    </div>
 
     <!--Interactive Map-->
-    <div id="Map" class="container">
+    <div id="map" class="ctr">
         <img src="world-outline-map.jpeg" alt="Interactive map with data" width="100%"></img>
         <button class="button">United States</button>
     </div>
     
     <!--Graph-->
-    <div id="Graph">
-        <canvas id="myCanvas"></canvas>
+    <div id="graph" class="graph">
+        <img src="sample_graph.png" alt="Scatterplot showing country data"></img>
+    </div>
+    <div>
+        <!-- <canvas id="myCanvas"></canvas> -->
 
         <div class="dropdown">
             <button class="dropbtn">Select y-axis</button>
@@ -70,6 +74,7 @@
             </div>
         </div>
     </div>
+
 
     <div class="dropdown">
         <button class="dropbtn">Select x-axis</button>

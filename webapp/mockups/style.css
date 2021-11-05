@@ -2,67 +2,71 @@
 Emily Litton and Jayti Arora
 November 4th, 2021*/
 
-/* title{
-    float:left;
-    font-size:large;
-}
-nav.horizontal-navbar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #f1f1f1;
+
+.welcome{
+    position:relative;
+    height:40%;
+    padding: 70px;
+    text-align:left;
+    background-image: linear-gradient(#769FB6, #e4dbbe);
 }
 
-
-nav.horizontal-navbar ul li a {
+.welcome p{
+    font-size: 20;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10%;
+    margin-right: 40%;
+}
+.graph {
+    position:relative;
+    padding: 10%;
+    
+}
+.graph img{
+    position:relative;
     display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    float: right;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    display:inline block;
 }
 
-nav.horizontal-navbar ul li a:hover {
-    background-color: #555;
-    color: white;
-} */
-
-.container {
+.ctr {
     position: relative;
-    width: 80%;
+    width: 100%;
+    
   }
   
   /* Make the image responsive */
-  .container img {
+  .ctr img {
     width: 100%;
     height: auto;
   }
   
   /* Style the button and place it in the middle of the container/image */
-  .container .button {
+  .ctr .button {
     position: absolute;
     top: 38%;
-    left: 20%;
+    left: 19%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    background-color: rgb(47, 163, 56);
-    color: white;
-    font-size: 20px;
-    color:black;
+    background-color: #F90093;
+    color: transparent;
+    font-size: 15px;
+    font-family:'Courier New', Courier, monospace;
     padding: 10px 10px;
     border: none;
     cursor: pointer;
     width: 10px;
     height: 10px;
     border-radius: 10px;
-
+  }
+  .ctr .button:hover{
+      color:#495867;
   }
   
-  
-  .container .button:hover {
-    background-color: black;
+  .ctr .button:hover {
+    background-color: rgb(196, 214, 30);
   }
 
   #Graph{
