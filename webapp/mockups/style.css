@@ -2,29 +2,30 @@
 Emily Litton and Jayti Arora
 November 4th, 2021*/
 
-
+body{
+  background-color: #a9a4fe;
+  width: 100%;
+}
 .welcome{
     position:relative;
     height:40%;
-    padding: 70px;
+    padding-bottom: 4%;
+    padding-top: 6%;
     text-align:left;
-    background-image: linear-gradient(#769FB6, #e4dbbe);
+    background-image: linear-gradient(#423f8f, #a9a4fe);
 }
 
 .welcome p{
     font-size: 20;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
     margin-left: 10%;
     margin-right: 40%;
+    color: white;
 }
 .graph {
     position:relative;
     padding: 1%; 
     width: 70%;
-    
-    
-
-    
     
 }
 .graph img{
@@ -35,9 +36,11 @@ November 4th, 2021*/
     width: 80%;
     display:inline block;
     float: left;
-    padding: 10%;
+    padding: 2%;
 
 }
+
+
 .graph .dropdown{
   display:inline-block;
   position: relative;
@@ -52,21 +55,24 @@ November 4th, 2021*/
   
   /* Make the image responsive */
   .ctr img {
-    width: 100%;
+    display: block;
+    width: 80%;
     height: auto;
+    margin-left:auto;
+    margin-right: auto;
   }
   
   /* Style the button and place it in the middle of the container/image */
   .ctr .button {
     position: absolute;
     top: 38%;
-    left: 19%;
+    left: 25%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    background-color: #F90093;
+    background-color: #EF5E5D;
     color: transparent;
     font-size: 15px;
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
     padding: 10px 10px;
     border: none;
     cursor: pointer;
@@ -75,12 +81,10 @@ November 4th, 2021*/
     border-radius: 10px;
     
   }
-  .ctr .button:hover{
-      color:#495867;
-  }
   
   .ctr .button:hover {
-    background-color: rgb(196, 214, 30);
+    background-color: #3FDAB2;
+    color: #30374D;
   }
 
   
@@ -89,6 +93,7 @@ November 4th, 2021*/
     vertical-align: top;
     float:left;
     padding: 1%;
+    background-color:white;
   }
 
   .dropdown-div{
@@ -109,6 +114,7 @@ November 4th, 2021*/
     position: relative;
     display: inline-block;
     margin-bottom: 5px;
+    font-family: sans-serif;
   }
   
   /* Dropdown Content (Hidden by Default) */
@@ -139,6 +145,12 @@ November 4th, 2021*/
   .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
 .navbar-color{
-  background-color:#1B4965;  
-  color: #E29578;
+  background-color:#FCBE2D;  
+  color: #30374D;
+  font-family: 'DM Sans', sans-serif;
+}
+
+#graph {
+  color:#30374D;
+  padding: 2%;
 }
