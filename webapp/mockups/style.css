@@ -15,7 +15,6 @@ body{
     text-align:left;
     background-image: linear-gradient(#423f8f, #a9a4fe);
 }
-
 .welcome p{
     font-size: 20;
     font-family: sans-serif;
@@ -40,120 +39,104 @@ body{
     padding: 2%;
 
 }
-
-
 .graph .dropdown{
   display:inline-block;
   position: relative;
   top: 0;
 }
-
 .ctr {
     position: relative;
     width: 100%;
     
-  }
-  
-  /* Make the image responsive */
-  .ctr img {
-    display: block;
-    width: 80%;
-    height: auto;
-    margin-left:auto;
-    margin-right: auto;
-  }
-  
-  /* Style the button and place it in the middle of the container/image */
-  .ctr .button {
-    position: absolute;
-    top: 38%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    background-color: #EF5E5D;
-    color: transparent;
-    font-size: 15px;
-    font-family: 'Zen Kaku Gothic Antique', sans-serif;
-    padding: 10px 10px;
-    border: none;
-    cursor: pointer;
-    width: 10px;
-    height: 10px;
-    border-radius: 10px;
-    
-  }
-  
-  .ctr .button:hover {
-    background-color: #3FDAB2;
-    color: #30374D;
-  }
-
-  
-  .graph .btn{
-    /* display:inline-block; */
-    vertical-align: top;
-    float:left;
-    padding: 1%;
-    background-color:white;
-    margin-top: 20px;
-  }
-
-  .dropdown-div{
-    padding:1%;
-    margin-left: 15px;
 }
-
-  /* Dropdown Button */
+.ctr img {
+  display: block;
+  width: 80%;
+  height: auto;
+  margin-left:auto;
+  margin-right: auto;
+}
+/* Style the button and place it in the middle of the container/image */
+.ctr .button {
+  position: absolute;
+  top: 38%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #EF5E5D;
+  color: transparent;
+  font-size: 15px;
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  padding: 10px 10px;
+  border: none;
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+.ctr .button:hover {
+  background-color: #3FDAB2;
+  color: #30374D;
+}
+.graph .btn{
+  vertical-align: top;
+  float:left;
+  padding: 1%;
+  background-color:white;
+  margin-top: 20px;
+}
+.dropdown-div{
+  padding:1%;
+  margin-left: 15px;
+}
+/* Dropdown Button */
 .dropbtn {
-    background-color: #ef5d5d;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 5px;
-    font-family: sans-serif;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {display: block;}
-  
-  /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {background-color: #3FDAB2;}
-
+  background-color: #ef5d5d;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 5px;
+  font-family: sans-serif;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3FDAB2;
+}
 .navbar-color{
   background-color:#FCBE2D;  
   color: #30374D;
   font-family: 'DM Sans', sans-serif;
-  
 }
-
 #graph {
   color:#30374D;
   padding: 2%;
