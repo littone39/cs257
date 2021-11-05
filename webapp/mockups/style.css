@@ -19,7 +19,12 @@ November 4th, 2021*/
 }
 .graph {
     position:relative;
-    padding: 10%;
+    padding: 1%; 
+    width: 70%;
+    
+    
+
+    
     
 }
 .graph img{
@@ -27,8 +32,16 @@ November 4th, 2021*/
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 80%;
     display:inline block;
+    float: left;
+    padding: 10%;
+
+}
+.graph .dropdown{
+  display:inline-block;
+  position: relative;
+  top: 0;
 }
 
 .ctr {
@@ -60,6 +73,7 @@ November 4th, 2021*/
     width: 10px;
     height: 10px;
     border-radius: 10px;
+    
   }
   .ctr .button:hover{
       color:#495867;
@@ -69,19 +83,17 @@ November 4th, 2021*/
     background-color: rgb(196, 214, 30);
   }
 
-  #Graph{
-      width:80%
+  
+  .graph .btn{
+    /* display:inline-block; */
+    vertical-align: top;
+    float:left;
+    padding: 1%;
   }
 
-  #myCanvas{
-      background-color: blue;
-      width: 40%;
-      height: 40%;
-      position: absolute;
-      left: 20%;
-      padding-top: 40px;
-  }
-
+  .dropdown-div{
+    padding:1%;
+}
 
   /* Dropdown Button */
 .dropbtn {
