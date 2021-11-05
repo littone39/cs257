@@ -5,6 +5,7 @@ November 4th, 2021*/
 body{
   background-color: #a9a4fe;
   width: 100%;
+  padding: 5px;
 }
 .welcome{
     position:relative;
@@ -94,15 +95,17 @@ body{
     float:left;
     padding: 1%;
     background-color:white;
+    margin-top: 20px;
   }
 
   .dropdown-div{
     padding:1%;
+    margin-left: 15px;
 }
 
   /* Dropdown Button */
 .dropbtn {
-    background-color: #005838;
+    background-color: #ef5d5d;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -142,7 +145,7 @@ body{
   .dropdown:hover .dropdown-content {display: block;}
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  .dropdown:hover .dropbtn {background-color: #3FDAB2;}
 
 .navbar-color{
   background-color:#FCBE2D;  

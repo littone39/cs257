@@ -11,76 +11,68 @@
   </head>
 
 <body>
-    <nav id="nav" class="navbar fixed-top navbar-color navbar-expand-lg">
-        <div class="container-fluid">
-          <a class="navbar-brand navbar-color" href="#">World Happiness Tracker</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active navbar-color" aria-current="page" href="#home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link navbar-color" href="#map">Map</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link navbar-color" href="#graph">Graph</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      <!--
-      <nav>
-        <a id="Home">World Happiness</a>
-        <ul >
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Map</a></li>
-            <li><a href="#">Graph</a></li>
+  <!--NavBar-->
+  <nav id="nav" class="navbar fixed-top navbar-color navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand navbar-color" href="#">World Happiness Tracker</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active navbar-color" aria-current="page" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navbar-color" href="#map">Map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navbar-color" href="#graph">Graph</a>
+          </li>
         </ul>
-    </nav>
-    -->
-    <div id="home" class="welcome">
-        <p>
-        <strong>Welcome!</strong> Click on a country to display information about country happiness, 
-        economics, and wellbeing. If you would like to generate a scatterplot graph of countries to compare two 
-        variables, scroll down to the next section or navigate using the bar above. All data is from
-        Gallup World Happiness Report. 
-        </p>
+      </div>
     </div>
+  </nav>
 
-    <!--Interactive Map-->
-    <div id="map" class="ctr">
-        <img src="world-outline-map.jpeg" alt="Interactive map with data" width="100%"></img>
-        <button class="button">United States</button>
-    </div>
+  <div id="home" class="welcome">
+      <p>
+      <strong>Welcome!</strong> Click on a country to display information about country happiness, 
+      economics, and wellbeing. If you would like to generate a scatterplot graph of countries to compare two 
+      variables, scroll down to the next section or navigate using the bar above. All data is from
+      Gallup World Happiness Report. 
+      </p>
+  </div>
+
+  <!--Interactive Map-->
+  <div id="map" class="ctr">
+      <img src="world-outline-map.jpeg" alt="Interactive map with data" width="100%"></img>
+      <button class="button">United States</button>
+  </div>
     
     <!--Graph-->
     <div id="graph">
       <h2>Graph Country Data</h2>
-      <p>Select two variables to generate a scatterplot graph of all countries. Each dot represents one country's data.</p>
-    <div class="dropdown-div">
-    <div class="dropdown">
-      <button class="dropbtn">Select y-axis</button>
-      <div class="dropdown-content">
-          <a href="#">Var1</a>
-          <a hresf="#">Var2</a>
-          <a href="#">Var3</a>
+      <p>Select two variables to generate a scatterplot graph of all countries. 
+        Each dot represents one country's data.
+      Click the plus button to generate another graph.</p>
+      <div class="dropdown-div">
+      <div class="dropdown">
+        <button class="dropbtn">Select y-axis</button>
+        <div class="dropdown-content">
+            <a href="#">Var1</a>
+            <a hresf="#">Var2</a>
+            <a href="#">Var3</a>
+        </div>
       </div>
-
-    </div>
-    <div class="dropdown">
-      <button class="dropbtn">Select x-axis</button>
-      <div class="dropdown-content">
-          <a href="#">Var1</a>
-          <a href="#">Var2</a>
-          <a href="#">Var3</a>
+      <div class="dropdown">
+        <button class="dropbtn">Select x-axis</button>
+        <div class="dropdown-content">
+            <a href="#">Var1</a>
+            <a href="#">Var2</a>
+            <a href="#">Var3</a>
+        </div>
       </div>
     </div>
-  </div>
 
     <div class="graph">
         <img src="sample_graph.png" alt="Scatterplot showing country data"></img>
@@ -89,19 +81,10 @@
     
     </div>
   </div>
-    <div>
-        <!-- <canvas id="myCanvas"></canvas> -->
 
-        
-    </div>
-
-    
-    
-    
-
-    
-
-
+  <div>
+      <!-- <canvas id="myCanvas"></canvas> -->
+  </div>
     
 </body>
 <html>
