@@ -129,3 +129,7 @@ November 4th, 2021*/
   body { 
     padding-top: 65px; 
 }
+.navbar-color{
+  background-color:#1B4965;  
+  color: #E29578;
+}
