@@ -1,10 +1,11 @@
 CREATE TABLE countries (
-    serial id,
-    text country_name
+    id serial,
+    country_name text,
+    region text
 )
 
-CREATE TABLE happiness_stats(
-    country text,
+CREATE TABLE world_happiness(
+    country_id int,
     year int,
     life_ladder float,
     gdp float,
