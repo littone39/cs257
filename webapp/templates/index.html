@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='happiness.css') }}" />
+    <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}" ></script>
+    <title>CS 257: Software Design</title>
+</head>
+
+<body>
+    <h1>CS 257: Happiness End-End App</h1>
+    <p>Select a country to view happiness for years provided</p>
+
+    <p>Countries <select id="country_selector"></select></p>
+
+    <p><table id="countries_table"></table></p>
+</body>
+</html>

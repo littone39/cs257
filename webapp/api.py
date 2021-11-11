@@ -1,9 +1,9 @@
 '''
-    books_webapp.py
-    Jeff Ondich, 25 April 2016
-    Updated 4 November 2020
+    api.py
+    Emily Litton, Jayti Arora 
+    11 November 2021
 
-    Tiny Flask API to support the tiny books web application.
+    Flask API to support the tiny happiness web application.
 '''
 import sys
 import flask
@@ -21,68 +21,54 @@ def get_connection():
                             user=config.user,
                             password=config.password)
 
-@api.route('/authors/') 
+@api.route('/countries/') 
 def get_authors():
-    ''' Returns a list of all the authors in our database. See
-        get_author_by_id below for description of the author
-        resource representation.
+    ''' Returns a list of all the countries in our database. 
 
         By default, the list is presented in alphabetical order
-        by surname, then given_name. You may, however, use
-        the GET parameter sort to request sorting by birth year.
+        by country name.
 
-            http://.../authors/?sort=birth_year
-
-        Returns an empty list if there's any database failure.
     '''
-    query = '''SELECT id, given_name, surname, birth_year, death_year
-               FROM authors ORDER BY '''
+    query = '''SELECT id, country_name from countries ORDER BY country_name'''
 
-    sort_argument = flask.request.args.get('sort')
-    if sort_argument == 'birth_year':
-        query += 'birth_year'
-    else:
-        query += 'surname, given_name'
-
-    author_list = []
+    country_list = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
         cursor.execute(query, tuple())
         for row in cursor:
-            author = {'id':row[0],
-                      'given_name':row[1],
-                      'surname':row[2],
-                      'birth_year':row[3],
-                      'death_year':row[4]}
-            author_list.append(author)
+            country = {'id':row[0], 'country_name':row[1]}
+            country_list.append(country)
         cursor.close()
         connection.close()
     except Exception as e:
         print(e, file=sys.stderr)
 
-    return json.dumps(author_list)
+    return json.dumps(country_list)
 
-@api.route('/books/author/<author_id>')
-def get_books_for_author(author_id):
-    query = '''SELECT books.id, books.title, books.publication_year
-               FROM books, authors, books_authors
-               WHERE books.id = books_authors.book_id
-                 AND authors.id = books_authors.author_id
-                 AND authors.id = %s
-               ORDER BY books.publication_year'''
-    book_list = []
+@api.route('/country/<country_id>')
+def get_books_for_author(country_id):
+    ''' returns happiness score for one country for all years provided '''
+    query = '''SELECT  countries.country_name, world_happiness.life_ladder,world_happiness.year, world_happiness.gdp, 
+                    world_happiness.social_support, world_happiness.life_expectancy, world_happiness.freedom 
+            FROM countries, world_happiness 
+            WHERE countries.id = world_happiness.country_id 
+            AND countries.id = %s order by year;'''
+    happiness_list = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query, (author_id,))
+        cursor.execute(query, (country_id,))
         for row in cursor:
-            book = {'id':row[0], 'title':row[1], 'publication_year':row[2]}
-            book_list.append(book)
+            entry = {'name':row[0],'life_ladder':row[1], 'year':row[2], 'gdp':row[3], \
+            'social_support':row[4], 'life_expectancy':row[5], 'freedom':row[6]}
+                # 'generosity':row[7], 'percieved_corruption':row[8], 'positive_affect':row[9],\
+                #     'negative_affect':row[10]}
+            happiness_list.append(entry)
         cursor.close()
         connection.close()
     except Exception as e:
         print(e, file=sys.stderr)
 
-    return json.dumps(book_list)
+    return json.dumps(happiness_list)
 

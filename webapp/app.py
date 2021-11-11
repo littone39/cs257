@@ -1,7 +1,7 @@
 '''
-    books_webapp.py
-    Jeff Ondich, 25 April 2016
-    Updated 6 November 2021
+    app.py
+    Emily Litton, Jayti Arora
+    11 November 2021
 
     A small Flask application that provides a barelywebsite with an accompanying
     API (which is also tiny) to support that website.
@@ -11,14 +11,14 @@ import argparse
 import api
 
 app = flask.Flask(__name__, static_folder='static', template_folder='templates')
-app.register_blueprint(api.api, url_prefix='/api')
+app.register_blueprint(api.api, url_prefix='/')
 
 @app.route('/') 
 def home():
     return flask.render_template('index.html')
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser('A books-and-authors application, including API & DB')
+    parser = argparse.ArgumentParser('A world-happiness application, including API & DB')
     parser.add_argument('host', help='the host to run on')
     parser.add_argument('port', type=int, help='the port to listen on')
     arguments = parser.parse_args()
