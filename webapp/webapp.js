@@ -7,11 +7,11 @@
 window.onload = initialize;
 
 function initialize() {
-    loadAuthorsSelector();
+    loadCountriesSelector();
 
     let element = document.getElementById('country_selector');
     if (element) {
-        element.onchange = onAuthorsSelectionChanged;
+        element.onchange = onCountiresSelectionChanged;
     }
 }
 
@@ -25,25 +25,21 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
-function loadAuthorsSelector() {
+function loadCountriesSelector() {
     let url = getAPIBaseURL();
 
     // Send the request to the API
     fetch(url, {method: 'get'})
 
-    // When the results come back, transform them from a JSON string into
-    // a Javascript object (in this case, a list of author dictionaries).
     .then((response) => response.json())
 
-    // Once you have your list of author dictionaries, use it to build
-    // an HTML table displaying the author names and lifespan.
-    .then(function(authors) {
+    .then(function(countries) {
         // Add the <option> elements to the <select> element
         let selectorBody = '';
-        for (let k = 0; k < authors.length; k++) {
-            let author = authors[k];
-            selectorBody += '<option value="' + author['id'] + '">'
-                                + author['surname'] + ', ' + author['given_name']
+        for (let k = 0; k < countries.length; k++) {
+            let country = countries[k];
+            selectorBody += '<option value="' + country['id'] + '">'
+                                + country['country_name']
                                 + '</option>\n';
         }
 
@@ -59,28 +55,35 @@ function loadAuthorsSelector() {
     });
 }
 
-function onAuthorsSelectionChanged() {
-    let authorID = this.value; 
-    let url = getAPIBaseURL() + '/books/author/' + authorID;
+function onCountiresSelectionChanged() {
+    let countryID = this.value; 
+    let url = getAPIBaseURL() + '/country/' + countryID;
 
     fetch(url, {method: 'get'})
 
     .then((response) => response.json())
 
-    .then(function(books) {
+    .then(function(world_happiness) {
         let tableBody = '';
-        for (let k = 0; k < books.length; k++) {
-            let book = books[k];
+        for (let k = 0; k < world_happiness.length; k++) {
+            let country_info = world_happiness[k];
             tableBody += '<tr>'
-                            + '<td>' + book['title'] + '</td>'
-                            + '<td>' + book['publication_year'] + '</td>'
+                            + '<td>' + country_info['life_ladder'] + '</td>'
+                            + '<td>' + country_info['gdp'] + '</td>'
+                            + '<td>' + country_info['social_support'] + '</td>'
+                            + '<td>' + country_info['life_expectancy'] + '</td>'
+                            + '<td>' + country_info['freedom'] + '</td>'
+                            + '<td>' + country_info['generosity'] + '</td>'
+                            + '<td>' + country_info['percieved_corruption'] + '</td>'
+                            + '<td>' + country_info['positive_affect'] + '</td>'
+                            + '<td>' + country_info['negative_affect'] + '</td>'
                             + '</tr>\n';
         }
 
         // Put the table body we just built inside the table that's already on the page.
-        let booksTable = document.getElementById('countries_table');
-        if (booksTable) {
-            booksTable.innerHTML = tableBody;
+        let countriesTable = document.getElementById('countries_table');
+        if (countriesTable) {
+          countriesTable.innerHTML = tableBody;
         }
     })
 
