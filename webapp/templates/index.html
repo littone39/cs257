@@ -4,6 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='happiness.css') }}" />
     <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}" ></script>
+    
+    <!-- script for datamaps library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='datamaps.world.min.js') }}"></script>
+
     <title>CS 257: Software Design</title>
 </head>
 
@@ -13,6 +19,11 @@
 
     <p>Countries <select id="country_selector"></select></p>
 
-    <p><table id="countries_table"></table></p>
+    <!-- TABLE FOR END-END assignment -->
+    <!-- <p><table id="countries_table"></table></p> -->
+    
+    <!--MAP -->
+    <div id="country-summary"></div>    
+    <div id="map-container"></div>
 </body>
 </html>
