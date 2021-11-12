@@ -3,7 +3,7 @@
     Emily Litton, Jayti Arora 
     11 November 2021
 
-    Flask API to support the tiny happiness web application.
+    Flask API to support the happiness web application.
 '''
 import sys
 import flask
