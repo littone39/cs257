@@ -73,7 +73,6 @@ function loadCountriesSelector() {
 function onCountiresSelectionChanged() {
     let countryID = this.value;
 
-
     let url = getAPIBaseURL() + 'country/' + countryID;
 
     fetch(url, {method: 'get'})
@@ -115,12 +114,13 @@ function onCountiresSelectionChanged() {
 } 
 
 function initializeMap() {
+    //countryInfo = create a dictionary of country abreviation geography.properties.name =  
     var map = new Datamap({ element: document.getElementById('map-container'), // where in the HTML to put the map
                             scope: 'world', // which map?
-                            projection: 'equirectangular', // what map projection? 'mercator' is also an option
+                            projection: 'mercator', // what map projection? 'equirectangular' is also an option
                             done: onMapDone, // once the map is loaded, call this function
-                            //data: extraCountryInfo, // here's some data that will be used by the popup template
-                            fills: { defaultFill: '#999999' },
+                            //data: extraCountryInfo, // here's some data that will be used by the popup template lets replace this with our own data
+                            fills: { defaultFill: '#999999' }, // change this fill to the one corresponding to the data
                             geographyConfig: {
                                 //popupOnHover: false, // You can disable the hover popup
                                 //highlightOnHover: false, // You can disable the color change on hover
@@ -139,23 +139,7 @@ function onMapDone(dataMap) {
 }
 
 function hoverPopupTemplate(geography, data) {
-    var population = 0;
-    if (data && 'population' in data) {
-        population = data.population;
-    }
-
-    var jeffHasLivedThere = 'Maybe. I dunno.';
-    if (data && 'jeffhasbeenthere' in data) {
-        if (data.jeffhasbeenthere) {
-            jeffHasLivedThere = 'Yes';
-        } else {
-            jeffHasLivedThere = 'No';
-        }
-    }
-
     var template = '<div class="hoverpopup"><strong>' + geography.properties.name + '</strong><br>\n'
-                    + '<strong>Population:</strong> ' + population + '<br>\n'
-                    + '<strong>Has Jeff been there?</strong> ' + jeffHasLivedThere + '<br>\n'
                     + '</div>';
 
     return template;
@@ -166,6 +150,7 @@ function onCountryClick(geography) {
     // geography.id will be the state/country name (e.g. 'MN')
     var countrySummaryElement = document.getElementById('country-summary');
     if (countrySummaryElement) {
+        //call api to get information for a particular country 
         var summary = '<p><strong>Country:</strong> ' + geography.properties.name + '</p>\n'
                     + '<p><strong>Abbreviation:</strong> ' + geography.id + '</p>\n';
         if (geography.id in extraCountryInfo) {
