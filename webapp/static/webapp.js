@@ -1,7 +1,10 @@
-/*
- * books.js
- * Jeff Ondich, 27 April 2016
- * Updated, 5 November 2020
+/* Emily Litton and Jayti Arora
+    webapp.js
+    November 11, 2021 
+
+    Adopted from books.js
+    Jeff Ondich, 27 April 2016
+    Updated, 5 November 2020
  */
 
 window.onload = initialize;
@@ -25,6 +28,7 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
+//Displays table of the country selected from selector
 function loadCountriesSelector() {
     let url = getAPIBaseURL() + 'countries/';
 
@@ -56,6 +60,7 @@ function loadCountriesSelector() {
     });
 }
 
+//Displays table of the new country selected
 function onCountiresSelectionChanged() {
     let countryID = this.value;
 
@@ -85,10 +90,6 @@ function onCountiresSelectionChanged() {
                             + '<td>' + country_info['social_support'] + '</td>'
                             + '<td>' + country_info['life_expectancy'] + '</td>'
                             + '<td>' + country_info['freedom'] + '</td>'
-                            // + '<td>' + country_info['generosity'] + '</td>'
-                            // + '<td>' + country_info['percieved_corruption'] + '</td>'
-                            // + '<td>' + country_info['positive_affect'] + '</td>'
-                            // + '<td>' + country_info['negative_affect'] + '</td>'
                             + '</tr>\n';
         }
 
