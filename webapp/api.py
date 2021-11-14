@@ -46,18 +46,20 @@ def get_authors():
 
     return json.dumps(country_list)
 
-@api.route('/country/<country_id>')
-def get_books_for_author(country_id):
+@api.route('/country/<country_name>')
+def get_books_for_author(country_name):
     ''' returns happiness score for one country for all years provided '''
     # maybe change to:
     # query = select * from world_happiness where country_id = %s
-    query = '''SELECT  * FROM world_happiness 
-            WHERE world_happiness.country_id = %s ORDER BY year;'''
+    query = '''SELECT  * FROM world_happiness, countries
+            WHERE countries.country_name = %s 
+            AND countries.id = world_happiness.country_id 
+            ORDER BY year;'''
     happiness_list = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query, (country_id,))
+        cursor.execute(query, (country_name,))
         for row in cursor:
             entry = {'id':row[0],'life_ladder':row[1], 'year':row[2], 'gdp':row[3], \
             'social_support':row[4], 'life_expectancy':row[5], 'freedom':row[6], \

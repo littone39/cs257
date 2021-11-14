@@ -52,7 +52,7 @@ function loadCountriesSelector() {
         selectorBody += '<option value = "0">--</option>\n'
         for (let k = 0; k < countries.length; k++) {
             let country = countries[k];
-            selectorBody += '<option value="' + country['id'] + '">'
+            selectorBody += '<option value="' + country['country_name'] + '">'
                                 + country['country_name']
                                 + '</option>\n';
         }
@@ -71,9 +71,9 @@ function loadCountriesSelector() {
 
 //Displays table of the new country selected
 function onCountiresSelectionChanged() {
-    let countryID = this.value;
+    let countryName = this.value;
 
-    let url = getAPIBaseURL() + 'country/' + countryID;
+    let url = getAPIBaseURL() + 'country/' + countryName;
 
     fetch(url, {method: 'get'})
 
@@ -146,18 +146,46 @@ function hoverPopupTemplate(geography, data) {
 }
 
 function onCountryClick(geography) {
-    // geography.properties.name will be the state/country name (e.g. 'Minnesota')
-    // geography.id will be the state/country name (e.g. 'MN')
-    var countrySummaryElement = document.getElementById('country-summary');
-    if (countrySummaryElement) {
-        //call api to get information for a particular country 
-        var summary = '<p><strong>Country:</strong> ' + geography.properties.name + '</p>\n'
-                    + '<p><strong>Abbreviation:</strong> ' + geography.id + '</p>\n';
-        if (geography.id in extraCountryInfo) {
-            var info = extraCountryInfo[geography.id];
-            summary += '<p><strong>Population:</strong> ' + info.population + '</p>\n';
+    let country_name = geography.properties.name
+    //make a dictionary between geography names of countries and our names
+    if (country_name == "United States of America"){
+        country_name = "United States"
+    }
+    let url = getAPIBaseURL() + 'country/' + country_name;
+
+    fetch(url, {method: 'get'})
+
+    .then((response) => response.json())
+    .then(function(country_summary){
+        let tableBody = '';
+        tableBody += '<tr>\
+                        <td>Year</td>\
+                        <td>Life Ladder Score</td>\
+                        <td>GDP Per Capita</td>\
+                        <td>Social Support</td>\
+                        <td>Life Expectancy</td>\
+                        <td>Freedom</td>\
+                        </tr>\n'
+        for (let k = 0; k < country_summary.length; k++) {
+            let country_info = country_summary[k];
+            tableBody += '<tr>'
+                        + '<td>' + country_info['year'] + '</td>'
+                        + '<td>' + country_info['life_ladder'] + '</td>'
+                        + '<td>' + country_info['gdp'] + '</td>'
+                        + '<td>' + country_info['social_support'] + '</td>'
+                        + '<td>' + country_info['life_expectancy'] + '</td>'
+                        + '<td>' + country_info['freedom'] + '</td>'
+                        + '</tr>\n';
+                
         }
 
-        countrySummaryElement.innerHTML = summary;
-    }
+        var countrySummaryElement = document.getElementById('country-summary');
+        if(countrySummaryElement){
+            countrySummaryElement.innerHTML = tableBody;
+    }})
+    .catch(function(error) {
+        console.log(error);
+    });
+        
+    
 }
