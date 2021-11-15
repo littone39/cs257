@@ -20,7 +20,12 @@ var extraCountryInfo = {
 function initialize() {
     loadCountriesSelector();
     initializeMap();
-
+    /*graph_button has to be clicked for chart to load
+    let element = document.getElementById('graph_button');
+    if (element) {
+        element.onclick = createLineChart;
+    }
+    */
     let element = document.getElementById('country_selector');
     if (element) {
         element.onchange = onCountiresSelectionChanged;
@@ -186,6 +191,45 @@ function onCountryClick(geography) {
     .catch(function(error) {
         console.log(error);
     });
+
+    function createLineChart() {
+        //x_axis = document.getElementById('x_var');
+        //y_axis = document.getElementById('y_var');
+        //check if either are null
+        //add dict to API with column names to no spaces names
+
+        // make sure x_axis or y_axis index is not null, else exclude that data
+
+        // Data & x-axis labels
+        var data = {
+            series: [
+                { data: [17, -2, 4, 9, 11, 7, 2] },
+                { data: [1, 2, 3, 5, 8, 13, 21] }
+            ]
+        };
+
+        /* x_data = [];
+         y_data = [];
+        for z in countries:
+            check if not null
+            x_data.append(z[x]) 
+        series: [
+                { data: x_data },
+                { data: y_data }
+            ] 
+        */
+
+    
+        // There are many options you can add to a chart. For this
+        // sample we're not using any. The documentation at Chartist's website
+        // says "check the samples for a complete list", but honestly, they do
+        // a mediocre job of pointing you to them.
+        // https://gionkunz.github.io/chartist-js/
+        var options = {}
+    
+        /* Initialize the chart with the above settings */
+        new Chartist.Line('#sample-line-chart', data, options);
+    }
         
     
 }
