@@ -9,6 +9,11 @@
     Styles for the "world happiness" webapp 
     for CS 257
 */
+body{
+  background-color: #a9a4fe;
+  width: 100%;
+  padding: 5px;
+}
 
 table {
     border-collapse: collapse;
@@ -66,4 +71,10 @@ a:hover {
   background: #eeeeee;
   border: 1px black solid;
   padding: 3px;
+}
+
+.navbar-color{
+  background-color:#FCBE2D;  
+  color: #30374D;
+  font-family: 'DM Sans', sans-serif;
 }
