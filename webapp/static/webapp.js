@@ -147,6 +147,36 @@ function onCountryClick(geography) {
     if (country_name == "United States of America"){
         country_name = "United States"
     }
+    //Countries that have no information:
+    /*
+    Brunei
+    Northern Cyprus
+    Greenland
+    French Guiana
+    Faulkland Islands
+    Western Sahara
+    Guinea Bussau
+    Republic of the Congo
+    Democratic Republic of the Congo
+    Somaliland
+    Eritrea
+    United Republic of Tanzania
+    Equatorial Guinea
+    Papa New Guinea
+    Puerto Rico
+    The Bahamas
+    French Southern and Antarctic Lands
+    Fiji
+    Vanuatu
+    Solomon Islands
+    Taiwan
+    North Korea
+    New Caledonia
+    Republic of Serbia
+    Macedonia
+    United States of America
+     */
+    
     let url = getAPIBaseURL() + 'country/' + country_name;
 
     fetch(url, {method: 'get'})
