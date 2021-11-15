@@ -9,25 +9,16 @@
 
 window.onload = initialize;
 
-var extraCountryInfo = {
-    GBR: {population: 66700000, jeffhasbeenthere: true, fillColor: '#2222aa'},
-    USA: {population: 328000000, jeffhasbeenthere: true, fillColor: '#2222aa'},
-    IND: {population: 1353000000, jeffhasbeenthere: false, fillColor: '#aa2222'},
-    JPN: {population: 125500000, jeffhasbeenthere: true, fillColor: '#aa2222'},
-    PRT: {population: 10300000, jeffhasbeenthere: true, fillColor: '#aa2222'},
-};
-
 function initialize() {
     loadCountriesSelector();
     initializeMap();
-    /*graph_button has to be clicked for chart to load
+    
     let element = document.getElementById('graph_button');
     if (element) {
-        element.onclick = createLineChart;
+        element.onclick = createChartOnClick;
     }
-    */
-    let element = document.getElementById('country_selector');
-    if (element) {
+    let selector = document.getElementById('country_selector');
+    if (selector) {
         element.onchange = onCountiresSelectionChanged;
     }
 }
@@ -190,23 +181,59 @@ function onCountryClick(geography) {
     }})
     .catch(function(error) {
         console.log(error);
-    });
+    });}
 
-    function createLineChart() {
-        //x_axis = document.getElementById('x_var');
-        //y_axis = document.getElementById('y_var');
+function createChartOnClick() {
+    x_axis = document.getElementById('x_selector');
+    y_axis = document.getElementById('y_selector');
+    if(x_axis && y_axis){
+        x_axis = x_axis.value
+        y_axis = y_axis.value
+        let url = getAPIBaseURL() + "graph/" + x_axis + "/" + y_axis
+        fetch(url, {method: 'get'})
+
+        .then((response) => response.json())
+        .then(function(data){
+            let plot_data = [];
+            let x_max = 0
+            for(let i = 0; i < data.length; i++){
+                point_x = data[i]["x"];
+                if(point_x > x_max){
+                    x_max = point_x;
+                };
+                point_y = data[i]["y"];
+                if(point_x != null && point_y != null){
+                    plot_data.push({x:point_x,y:point_y});
+                };
+            };
+            
+
+            var data = {
+                //labels: labels,
+                series: [
+                    { data: plot_data }
+                    
+                ]
+            };
+            var options = {
+                showLine: false
+            };
+
+            /* Initialize the chart with the above settings */
+            new Chartist.Line('#sample-line-chart', data, options);
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
         //check if either are null
         //add dict to API with column names to no spaces names
 
         // make sure x_axis or y_axis index is not null, else exclude that data
 
         // Data & x-axis labels
-        var data = {
-            series: [
-                { data: [17, -2, 4, 9, 11, 7, 2] },
-                { data: [1, 2, 3, 5, 8, 13, 21] }
-            ]
-        };
+
+        
 
         /* x_data = [];
          y_data = [];
@@ -225,10 +252,7 @@ function onCountryClick(geography) {
         // says "check the samples for a complete list", but honestly, they do
         // a mediocre job of pointing you to them.
         // https://gionkunz.github.io/chartist-js/
-        var options = {}
-    
-        /* Initialize the chart with the above settings */
-        new Chartist.Line('#sample-line-chart', data, options);
+        
     }
         
     

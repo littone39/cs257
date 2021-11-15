@@ -46,8 +46,8 @@ a:hover {
    * https://css-tricks.com/aspect-ratio-boxes/
    */
   height: 0;
-  width: 80%;
-  padding-bottom: 60%;
+  width: 100%;
+  padding-bottom: 70%;
 
   /* My friend Shaun (Carleton CS '02) is even worse than I am at the details of
    * graphic design. So when he wants to make sure the designers don't preserve
@@ -63,7 +63,7 @@ a:hover {
 }
 
 #country-summary {
-  float: right;
+  float: left;
   width: 40%;
 }
 
