@@ -110,6 +110,13 @@ function onCountiresSelectionChanged() {
 } 
 
 function initializeMap() {
+    // extraCountryInfo ={};
+    // let url = getAPIBaseURL() + 'countries';
+
+    // fetch(url, {method: 'get'})
+
+    // .then((response) => response.json())
+
     //countryInfo = create a dictionary of country abreviation geography.properties.name =  
     var map = new Datamap({ element: document.getElementById('map-container'), // where in the HTML to put the map
                             scope: 'world', // which map?
@@ -143,38 +150,39 @@ function hoverPopupTemplate(geography, data) {
 
 function onCountryClick(geography) {
     let country_name = geography.properties.name
+    
     //make a dictionary between geography names of countries and our names
     if (country_name == "United States of America"){
         country_name = "United States"
     }
     //Countries that have no information:
     /*
-    Brunei
-    Northern Cyprus
-    Greenland
-    French Guiana
-    Faulkland Islands
-    Western Sahara
-    Guinea Bussau
-    Republic of the Congo
-    Democratic Republic of the Congo
-    Somaliland
-    Eritrea
-    United Republic of Tanzania
-    Equatorial Guinea
-    Papa New Guinea
-    Puerto Rico
-    The Bahamas
-    French Southern and Antarctic Lands
-    Fiji
-    Vanuatu
-    Solomon Islands
-    Taiwan
-    North Korea
-    New Caledonia
-    Republic of Serbia
-    Macedonia
-    United States of America
+    Brunei : not
+    Northern Cyprus : not
+    Greenland : not
+    French Guiana : not
+    Faulkland Islands : not 
+    Western Sahara : not
+    Guinea Bussau : not
+    Republic of the Congo : Congo (Brazzaville)
+    Democratic Republic of the Congo : Congo (Kinshasa)
+    Somaliland : Somaliland region
+    Eritrea : not
+    United Republic of Tanzania : Tanzania
+    Equatorial Guinea : not
+    Papa New Guinea :not 
+    Puerto Rico : not
+    The Bahamas : not 
+    French Southern and Antarctic Lands : not
+    Fiji : not
+    Vanuatu :not 
+    Solomon Islands : not
+    Taiwan : Taiwan Province of China
+    North Korea : not
+    New Caledonia : not
+    Republic of Serbia : Serbia
+    Macedonia : North Macedonia
+    United States of America : United States
      */
     
     let url = getAPIBaseURL() + 'country/' + country_name;
@@ -208,17 +216,27 @@ function onCountryClick(geography) {
         var countrySummaryElement = document.getElementById('country-summary');
         if(countrySummaryElement){
             countrySummaryElement.innerHTML = tableBody;
-    }})
+        }
+        var countrySummaryTitle = document.getElementById('country-title');
+        if(countrySummaryTitle){
+            countrySummaryTitle.innerHTML = country_name;
+        }
+    })
+
     .catch(function(error) {
         console.log(error);
     });}
 
 function createChartOnClick() {
-    x_axis = document.getElementById('x_selector');
-    y_axis = document.getElementById('y_selector');
-    if(x_axis && y_axis){
-        x_axis = x_axis.value
-        y_axis = y_axis.value
+    x_selector = document.getElementById('x_selector');
+    y_selector = document.getElementById('y_selector');
+    title = document.getElementById("chart-title")
+    if(x_selector && y_selector){
+        x_axis = x_selector.value
+        y_axis = y_selector.value
+        if(title){
+            title.innerHTML = x_axis + " vs " + y_axis;
+        }
         let url = getAPIBaseURL() + "graph/" + x_axis + "/" + y_axis
         fetch(url, {method: 'get'})
 
@@ -243,7 +261,8 @@ function createChartOnClick() {
                 series: [
                     { data: plot_data }
                     
-                ]
+                ],
+                
             };
             var options = {
                 showLine: false
@@ -251,7 +270,10 @@ function createChartOnClick() {
 
             /* Initialize the chart with the above settings */
             new Chartist.Line('#sample-line-chart', data, options);
+
+            
         })
+        
         .catch(function(error) {
             console.log(error);
         });

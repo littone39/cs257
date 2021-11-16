@@ -17,6 +17,8 @@ body{
 
 table {
     border-collapse: collapse;
+    border: 1px solid black;
+    
 }
 
 th, td {
@@ -34,7 +36,22 @@ a:hover {
   text-decoration: none;
   cursor: pointer;
 }
-
+#country-info-container{
+  width: 100%;
+  height: auto;
+  background-color:#a9a4fe;
+  display:block;
+}
+.country-info{
+  width:100%;
+  
+}
+.country-table{
+  margin: 50px;
+}
+.selector-and-chart{
+  display:block;
+}
 #map-container {
   position: relative;
   float: left;
@@ -48,7 +65,7 @@ a:hover {
   height: 0;
   width: 100%;
   padding-bottom: 70%;
-  margin-top: 20px;
+  /* margin-top: 10px; */
 
   /* My friend Shaun (Carleton CS '02) is even worse than I am at the details of
    * graphic design. So when he wants to make sure the designers don't preserve
@@ -67,7 +84,11 @@ a:hover {
   float: left;
   width: 40%;
 }
-
+.welcome{
+  padding: 30px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color:aquamarine;
+}
 .hoverpopup {
   background: #eeeeee;
   border: 1px black solid;
@@ -79,3 +100,19 @@ a:hover {
   color: #30374D;
   font-family: 'DM Sans', sans-serif;
 }
+
+#chart-container{
+  display:block;
+  float:left;
+  width:50%;
+}
+
+.selector-and-chart{
+  /* position:relative; */
+  background-color:bisque;
+}
+
+
+
+
+

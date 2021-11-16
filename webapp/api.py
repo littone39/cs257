@@ -22,7 +22,7 @@ def get_connection():
                             password=config.password)
 
 @api.route('/countries/') 
-def get_authors():
+def get_countries():
     ''' Returns a list of all the countries in our database. 
 
         By default, the list is presented in alphabetical order
@@ -47,7 +47,7 @@ def get_authors():
     return json.dumps(country_list)
 
 @api.route('/country/<country_name>')
-def get_books_for_author(country_name):
+def get_country(country_name):
     ''' returns happiness score for one country for all years provided '''
     # maybe change to:
     # query = select * from world_happiness where country_id = %s
@@ -61,7 +61,7 @@ def get_books_for_author(country_name):
         cursor = connection.cursor()
         cursor.execute(query, (country_name,))
         for row in cursor:
-            entry = {'id':row[0],'life_ladder':row[1], 'year':row[2], 'gdp':row[3], \
+            entry = {'id':row[0],'life_ladder':row[2], 'year':row[1], 'gdp':row[3], \
             'social_support':row[4], 'life_expectancy':row[5], 'freedom':row[6], \
                 'generosity':row[7], 'percieved_corruption':row[8], 'positive_affect':row[9],\
                     'negative_affect':row[10]}
