@@ -22,7 +22,7 @@ table {
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 1px solid black;
     padding: 15px;
 }
 
@@ -40,10 +40,12 @@ a:hover {
   width: 100%;
   height: auto;
   background-color:#a9a4fe;
-  display:block;
+  display:list-item;
 }
 .country-info{
   width:100%;
+  display:block;
+  margin: 0;
   
 }
 .country-table{

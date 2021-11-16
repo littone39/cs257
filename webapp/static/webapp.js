@@ -220,6 +220,7 @@ function onCountryClick(geography) {
         var countrySummaryTitle = document.getElementById('country-title');
         if(countrySummaryTitle){
             countrySummaryTitle.innerHTML = country_name;
+            // countrySummaryTitle..scrollIntoView();
         }
     })
 
