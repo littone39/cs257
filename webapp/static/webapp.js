@@ -152,9 +152,21 @@ function onCountryClick(geography) {
     let country_name = geography.properties.name
     
     //make a dictionary between geography names of countries and our names
-    if (country_name == "United States of America"){
-        country_name = "United States"
-    }
+    var countryDict = {
+        "Republic of the Congo": "Congo (Brazzaville)",
+        "Democratic Republic of the Congo": "Congo (Kinshasa)",
+        "Somaliland": "Somaliland region",
+        "United Republic of Tanzania" : "Tanzania",
+        "Taiwan" : "Taiwan Province of China",
+        "Republic of Serbia" : "Serbia",
+        "Macedonia" : "North Macedonia",
+        "United States of America" : "United States"
+      };
+
+      if(country_name in countryDict){
+          country_name = countryDict[country_name];
+      }
+
     //Countries that have no information:
     /*
     Brunei : not
@@ -192,6 +204,11 @@ function onCountryClick(geography) {
     .then((response) => response.json())
     .then(function(country_summary){
         let tableBody = '';
+        
+        if(country_summary.length == 0){
+            tableBody += 'This country has no information in our dataset';
+        }
+        
         tableBody += '<tr>\
                         <td><b>Year</b></td>\
                         <td><b>Life Ladder Score</b></td>\
