@@ -12,7 +12,7 @@
 body{
   background-color: #a9a4fe;
   width: 100%;
-  padding: 5px;
+  padding: 0px;
 }
 
 table {
@@ -41,6 +41,7 @@ a:hover {
   height: auto;
   background-color:#a9a4fe;
   display:list-item;
+  
 }
 .country-info{
   width:100%;
@@ -48,9 +49,17 @@ a:hover {
   margin: 0;
   
 }
-.country-table{
-  margin: 50px;
+
+#country-summary {
+  float: left;
+  width: 90%;
+  padding: 10%;
+  margin: 5%;
+  
 }
+/* .country-table{
+  padding: 5%;
+} */
 .selector-and-chart{
   display:block;
 }
@@ -66,7 +75,7 @@ a:hover {
    */
   height: 0;
   width: 100%;
-  padding-bottom: 70%;
+  padding-bottom: 50%;
   /* margin-top: 10px; */
 
   /* My friend Shaun (Carleton CS '02) is even worse than I am at the details of
@@ -74,7 +83,8 @@ a:hover {
    * his color choices, he makes stuff orange to force their hand. I am using
    * orange here both to remind you to change the color, and to make visible the
    * size and aspect ratio of the US map object. */
-  background: orange;
+  background:#FCBE2D;
+   /* background: #a9a4fe; */
 }
 
 #goals {
@@ -82,14 +92,13 @@ a:hover {
   width: 40%;
 }
 
-#country-summary {
-  float: left;
-  width: 40%;
-}
+
 .welcome{
+  padding-top:50px;
   padding: 30px;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color:aquamarine;
+  margin-bottom:0;
 }
 .hoverpopup {
   background: #eeeeee;
@@ -98,7 +107,8 @@ a:hover {
 }
 
 .navbar-color{
-  background-color:#FCBE2D;  
+  /* background-color:#FCBE2D;   */
+  background-color :#a9a4fe;
   color: #30374D;
   font-family: 'DM Sans', sans-serif;
 }
@@ -106,12 +116,20 @@ a:hover {
 #chart-container{
   display:block;
   float:left;
-  width:50%;
+  width:90%;
+  margin:5%;
+  
 }
 
 .selector-and-chart{
   /* position:relative; */
-  background-color:bisque;
+  background-color:white;
+}
+
+select{
+  background-color:aquamarine;
+  border-radius: 0px;
+
 }
 
 

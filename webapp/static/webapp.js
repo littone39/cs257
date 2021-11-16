@@ -120,7 +120,7 @@ function initializeMap() {
     //countryInfo = create a dictionary of country abreviation geography.properties.name =  
     var map = new Datamap({ element: document.getElementById('map-container'), // where in the HTML to put the map
                             scope: 'world', // which map?
-                            projection: 'mercator', // what map projection? 'equirectangular' is also an option
+                            projection: 'equirectangular', // what map projection? 'equirectangular' or 'mercator' is also an option
                             done: onMapDone, // once the map is loaded, call this function
                             //data: extraCountryInfo, // here's some data that will be used by the popup template lets replace this with our own data
                             fills: { defaultFill: '#999999' }, // change this fill to the one corresponding to the data
@@ -193,12 +193,13 @@ function onCountryClick(geography) {
     .then(function(country_summary){
         let tableBody = '';
         tableBody += '<tr>\
-                        <td>Year</td>\
-                        <td>Life Ladder Score</td>\
-                        <td>GDP Per Capita</td>\
-                        <td>Social Support</td>\
-                        <td>Life Expectancy</td>\
-                        <td>Freedom</td>\
+                        <td><b>Year</b></td>\
+                        <td><b>Life Ladder Score</b></td>\
+                        <td><b>GDP Per Capita</b></td>\
+                        <td><b>Social Support</b></td>\
+                        <td><b>Life Expectancy</b></td>\
+                        <td><b>Freedom</b></td>\
+                        <td><b>Generosity</b></td>\
                         </tr>\n'
         for (let k = 0; k < country_summary.length; k++) {
             let country_info = country_summary[k];
@@ -209,6 +210,7 @@ function onCountryClick(geography) {
                         + '<td>' + country_info['social_support'] + '</td>'
                         + '<td>' + country_info['life_expectancy'] + '</td>'
                         + '<td>' + country_info['freedom'] + '</td>'
+                        + '<td>' + country_info['generosity'] + '</td>'
                         + '</tr>\n';
                 
         }
@@ -256,12 +258,14 @@ function createChartOnClick() {
                 };
             };
             
-
+            labels = []
+            for(let i=0; i<x_max; i++){
+                labels.push(i);
+            };
             var data = {
-                //labels: labels,
+                labels: labels,
                 series: [
-                    { data: plot_data }
-                    
+                    {data : plot_data}
                 ],
                 
             };
