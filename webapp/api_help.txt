@@ -1,0 +1,74 @@
+REQUEST: /countries/
+
+GET parameters
+    none
+
+RESPONSE: a JSON list of dictionaries, each of which represents one
+country, sorted alphabetically by name. Each dictionary in this
+list will have the following fields.
+
+   id -- (INTEGER) the id associated with the country in our database
+   country_name -- (TEXT) the country name 
+
+EXAMPLE:
+    /countries/
+
+       [{"id": 149, "country_name": "Afghanistan"}, {"id": 93, "country_name": "Albania"}, 
+       {"id": 109, "country_name": "Algeria"} ... ]
+       
+REQUEST: /country/<country_name>
+
+GET parameters
+    country_name(required) -- return only entries in the database associated with this 
+        country. 
+
+RESPONSE: a JSON list of dictionaries, each represents one year of data collected 
+for that country, sorted by year. Each dictionary has the following fields:
+
+    id -- (INTEGER) the id associated with the country
+    year -- (INTEGER) the year in which the data in this dictionary was collected
+    life_ladder -- (FLOAT) the life ladder score (often referred to as happiness score)
+    gdp -- (FLOAT) GDP per capita 
+    social_support -- (FLOAT) a score that represents the level of social support the country 
+        provided for citizens.
+    life_expectancy -- (FLOAT) average life expectancy at birth
+    freedom -- (FLOAT) a score associated with the country's level of freedom and individual
+        autonomy
+    generosity -- (FLOAT) a score associated with citizens' percieved culture of generosity
+    percieved_corruption -- (FLOAT) score associated with corruption of government
+    positive affect -- (FLOAT) score associated with how positive people feel (how
+        likely are you to experience positive emotions?)
+    negative affect -- (FLOAT) score associated with how negative people feel (how
+        likely are you to experience negative emotions?)
+
+EXAMPLE:
+    /country/Afghanistan
+
+    [{"id": 149, "life_ladder": 3.724, "year": 2008, "gdp": 7.37, "social_support": 0.451, 
+    "life_expectancy": 50.8, "freedom": 0.718, "generosity": 0.168, "percieved_corruption": 0.882, 
+    "positive_affect": 0.518, "negative_affect": 0.258}, {"id": 149, "life_ladder": 4.402, "year": 2009, 
+    "gdp": 7.54, "social_support": 0.552, "life_expectancy": 51.2, "freedom": 0.679, "generosity": 0.19, 
+    "percieved_corruption": 0.85, "positive_affect": 0.584, "negative_affect": 0.237}, ... ]
+
+REQUEST: /graph/<x_axis>/<y_axis>
+
+GET parameters:
+    x_axis (required) is the variable that the user requests be charted on the x axis 
+        (options: life_ladder, gdp, social_support, life_expectancy, freedom, generosity, 
+        percieved_corruption)
+    y_axis (required) is the variable that the user requests be charted on the y axis 
+        (options: same as for x_axis)
+
+RESPONSE: a JSON list of dictionaries, each representing a country and the country's data for
+the x variable and y variable in the year 2021. Each dictionary has the following format:
+
+    id -- (INTEGER) id number associated with the country in our database
+    x -- (FLOAT) x value of the coordinate for the graph (value associated with a country's variable for 2021)
+    y -- (FLOAT) y value of the coordinate 
+
+EXAMPLE:
+
+    /graph/life_ladder/gdp 
+
+    [{"id": 1, "x": 7.842, "y": 10.775}, {"id": 2, "x": 7.62, "y": 10.933}, {"id": 3, "x": 7.571, "y": 11.117}, 
+    {"id": 4, "x": 7.554, "y": 10.878}, ... ]

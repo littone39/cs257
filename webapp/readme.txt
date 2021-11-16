@@ -17,7 +17,9 @@ to add a table to sql to link the abbreviations and country names from our datab
 to datamaps
 - descriptions of the variables/short description of what does the data mean 
 and link to World Happiness Report for more information
-- description of the generated chart (what are all the dots??)
+- short description of the generated chart (what are all the dots??)
+- code: fix api endpoints to make more sense with our data and remove unnecessary functions
+from js. 
 Ideally we will add:
 - country map color coded -- happiest countries darker, less happy countries lighter
 - hover over plotted points to see country name

@@ -21,6 +21,11 @@ def get_connection():
                             user=config.user,
                             password=config.password)
 
+@api.route('/api/help')
+def help():
+    help_text = open('api_help.txt').read()
+    return flask.Response(help_text, mimetype='text/plain')
+
 @api.route('/countries/') 
 def get_countries():
     ''' Returns a list of all the countries in our database. 
@@ -102,3 +107,4 @@ def get_graph_coords(x_axis, y_axis):
         print(e, file=sys.stderr)
 
     return json.dumps(coords)
+
