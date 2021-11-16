@@ -218,6 +218,17 @@ function onCountryClick(geography) {
                         <td><b>Freedom</b></td>\
                         <td><b>Generosity</b></td>\
                         </tr>\n'
+
+        tableBody += '<tr>\
+                        <td>(Year the data is from)</td>\
+                        <td>(Cantril ladder score rating life on a scale of 0-10)</td>\
+                        <td>(Average GDP per person)</td>\
+                        <td>(Liklihood of having someone to rely on around you)</td>\
+                        <td>(Average life span)</td>\
+                        <td>(Satisfaction level with ability to choose what you want to do)</td>\
+                        <td>(Liklihood of helping out one another)</td>\
+                        </tr>\n'
+
         for (let k = 0; k < country_summary.length; k++) {
             let country_info = country_summary[k];
             tableBody += '<tr>'
