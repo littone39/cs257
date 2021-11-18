@@ -110,12 +110,22 @@ function onCountiresSelectionChanged() {
 } 
 
 function initializeMap() {
-    // extraCountryInfo ={};
-    // let url = getAPIBaseURL() + 'countries';
+     
+    //  let url = getAPIBaseURL() + 'countries';
 
-    // fetch(url, {method: 'get'})
+    //  fetch(url, {method: 'get'})
 
-    // .then((response) => response.json())
+    //  .then((response) => response.json())
+    //  .then(function(happiness_scores){
+    //     countryInfo = {};
+    //     for(var i=0; i<happiness_scores.length;i++){
+    //         var country = happiness_scores[i]
+    //         green = 255 - (country["life_ladder"] * 20)
+    //         blue = (country["life_ladder"] * 1000)
+    //         color = "#00" + blue;
+    //         countryInfo[country["id"]] = {fillColor:color};
+    //         console.log(country["id"]);
+    //     };
     var page_map = document.getElementById('map-container');
     
     if (page_map){
@@ -124,7 +134,7 @@ function initializeMap() {
                                 scope: 'world', // which map?
                                 projection: 'equirectangular', // what map projection? 'equirectangular' or 'mercator' is also an option
                                 done: onMapDone, // once the map is loaded, call this function
-                                //data: extraCountryInfo, // here's some data that will be used by the popup template lets replace this with our own data
+                                //data: countryInfo, // here's some data that will be used by the popup template lets replace this with our own data
                                 fills: { defaultFill: '#999999' }, // change this fill to the one corresponding to the data
                                 geographyConfig: {
                                     //popupOnHover: false, // You can disable the hover popup
@@ -135,7 +145,13 @@ function initializeMap() {
                                     highlightBorderColor: '#000000', // border color when you hover on a state/country
                                 }
                             });
-}}
+    };
+    
+    //  })
+    //  .catch(function(error) {
+    //     console.log(error);
+    // });
+}
 
 // This gets called once the map is drawn, so you can set various attributes like
 // state/country click-handlers, etc.
