@@ -52,6 +52,16 @@ ALTER SEQUENCE public.countries_id_seq OWNED BY public.countries.id;
 
 
 --
+-- Name: country_abbreviations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.country_abbreviations (
+    abbreviation text,
+    country_name text
+);
+
+
+--
 -- Name: world_happiness; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -248,6 +258,192 @@ COPY public.countries (id, country_name, region) FROM stdin;
 164	Suriname	\N
 165	Syria	\N
 166	Trinidad and Tobago	\N
+\.
+
+
+--
+-- Data for Name: country_abbreviations; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.country_abbreviations (abbreviation, country_name) FROM stdin;
+AFG	Afghanistan
+AGO	Angola
+ALB	Albania
+ARE	United Arab Emirates
+ARG	Argentina
+ARM	Armenia
+ATA	Antarctica
+ATF	French Southern and Antarctic Lands
+AUS	Australia
+AUT	Austria
+AZE	Azerbaijan
+BDI	Burundi
+BEL	Belgium
+BEN	Benin
+BFA	Burkina Faso
+BGD	Bangladesh
+BGR	Bulgaria
+BHS	The Bahamas
+BIH	Bosnia and Herzegovina
+BLR	Belarus
+BLZ	Belize
+BOL	Bolivia
+BRA	Brazil
+BRN	Brunei
+BTN	Bhutan
+BWA	Botswana
+CAF	Central African Republic
+CAN	Canada
+CHE	Switzerland
+CHL	Chile
+CHN	China
+CIV	Ivory Coast
+CMR	Cameroon
+COD	Congo (Kinshasa)
+COG	Congo (Brazzaville)
+COL	Colombia
+CRI	Costa Rica
+CUB	Cuba
+-99	Northern Cyprus
+CYP	Cyprus
+CZE	Czech Republic
+DEU	Germany
+DJI	Djibouti
+DNK	Denmark
+DOM	Dominican Republic
+DZA	Algeria
+ECU	Ecuador
+EGY	Egypt
+ERI	Eritrea
+ESP	Spain
+EST	Estonia
+ETH	Ethiopia
+FIN	Finland
+FJI	Fiji
+FLK	Falkland Islands
+FRA	France
+GUF	French Guiana
+GAB	Gabon
+GBR	United Kingdom
+GEO	Georgia
+GHA	Ghana
+GIN	Guinea
+GMB	Gambia
+GNB	Guinea Bissau
+GNQ	Equatorial Guinea
+GRC	Greece
+GRL	Greenland
+GTM	Guatemala
+GUY	Guyana
+HND	Honduras
+HRV	Croatia
+HTI	Haiti
+HUN	Hungary
+IDN	Indonesia
+IND	India
+IRL	Ireland
+IRN	Iran
+IRQ	Iraq
+ISL	Iceland
+ISR	Israel
+ITA	Italy
+JAM	Jamaica
+JOR	Jordan
+JPN	Japan
+KAZ	Kazakhstan
+KEN	Kenya
+KGZ	Kyrgyzstan
+KHM	Cambodia
+KOR	South Korea
+-99	Kosovo
+KWT	Kuwait
+LAO	Laos
+LBN	Lebanon
+LBR	Liberia
+LBY	Libya
+LKA	Sri Lanka
+LSO	Lesotho
+LTU	Lithuania
+LUX	Luxembourg
+LVA	Latvia
+MAR	Morocco
+MDA	Moldova
+MDG	Madagascar
+MEX	Mexico
+MKD	North Macedonia
+MLI	Mali
+MMR	Myanmar
+MNE	Montenegro
+MNG	Mongolia
+MOZ	Mozambique
+MRT	Mauritania
+MWI	Malawi
+MYS	Malaysia
+NAM	Namibia
+NCL	New Caledonia
+NER	Niger
+NGA	Nigeria
+NIC	Nicaragua
+NLD	Netherlands
+NOR	Norway
+NPL	Nepal
+NZL	New Zealand
+OMN	Oman
+PAK	Pakistan
+PAN	Panama
+PER	Peru
+PHL	Philippines
+PNG	Papua New Guinea
+POL	Poland
+PRI	Puerto Rico
+PRK	North Korea
+PRT	Portugal
+PRY	Paraguay
+QAT	Qatar
+ROU	Romania
+RUS	Russia
+RWA	Rwanda
+ESH	Western Sahara
+SAU	Saudi Arabia
+SDN	Sudan
+SSD	South Sudan
+SEN	Senegal
+SLB	Solomon Islands
+SLE	Sierra Leone
+SLV	El Salvador
+-99	Somaliland region
+SOM	Somalia
+SRB	Serbia
+SUR	Suriname
+SVK	Slovakia
+SVN	Slovenia
+SWE	Sweden
+SWZ	Swaziland
+SYR	Syria
+TCD	Chad
+TGO	Togo
+THA	Thailand
+TJK	Tajikistan
+TKM	Turkmenistan
+TLS	East Timor
+TTO	Trinidad and Tobago
+TUN	Tunisia
+TUR	Turkey
+TWN	Taiwan Province of China
+TZA	Tanzania
+UGA	Uganda
+UKR	Ukraine
+URY	Uruguay
+USA	United States
+UZB	Uzbekistan
+VEN	Venezuela
+VNM	Vietnam
+VUT	Vanuatu
+PSE	West Bank
+YEM	Yemen
+ZAF	South Africa
+ZMB	Zambia
+ZWE	Zimbabwe
 \.
 
 

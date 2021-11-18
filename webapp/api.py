@@ -10,6 +10,7 @@ import flask
 import json
 import config
 import psycopg2
+import random
 
 api = flask.Blueprint('api', __name__)
 
@@ -52,28 +53,33 @@ def get_countries():
     return json.dumps(country_list)
 
 ##### this only works with new data.sql #####
-# @api.route('/countries/happiness')
-# def get_all_happiness():
-#     ''' returns a list of dictionaries containing country code and life_ladder (happiness) score '''
-#     query = '''SELECT country_abbreviations.abbreviation, world_happiness.life_ladder
-#             FROM country_abbreviations, world_happiness, countries
-#             WHERE country_abbreviations.country_name = countries.country_name
-#             AND countries.id = world_happiness.country_id 
-#             AND world_happiness.year = 2021; '''
-#     happiness_list = []
-#     try:
-#         connection = get_connection()
-#         cursor = connection.cursor()
-#         cursor.execute(query)
-#         for row in cursor:
-#             entry = {'id':row[0],'life_ladder':row[1]}
-#             happiness_list.append(entry)
-#         cursor.close()
-#         connection.close()
-#     except Exception as e:
-#         print(e, file=sys.stderr)
+@api.route('/countries/happiness')
+def get_all_happiness():
+    ''' returns a list of dictionaries containing country code and life_ladder (happiness) score '''
+    query = '''SELECT country_abbreviations.abbreviation, world_happiness.life_ladder
+            FROM country_abbreviations, world_happiness, countries
+            WHERE country_abbreviations.country_name = countries.country_name
+            AND countries.id = world_happiness.country_id 
+            AND world_happiness.year = 2021; '''
+    happiness_dict = {}
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query)
+        for row in cursor:
+            #entry = {'id':row[0],'life_ladder':row[1]}
+            
+            r = 0
+            g = 255 - (int(row[1]*20))
+            b = (int(row[1]*20))
+            color = '#%02X%02X%02X' % (r, g, b)
+            happiness_dict[row[0]] = {"fillColor":color}
+        cursor.close()
+        connection.close()
+    except Exception as e:
+        print(e, file=sys.stderr)
 
-#     return json.dumps(happiness_list)
+    return json.dumps(happiness_dict)
 
 @api.route('/country/<country_name>')
 def get_country(country_name):
