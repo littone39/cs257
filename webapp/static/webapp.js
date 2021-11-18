@@ -273,7 +273,8 @@ function onCountryClick(geography) {
             // countrySummaryTitle..scrollIntoView();
         }
 
-        window.location = window.location + '#summary';
+        // scrolls down to country table
+        //window.location = window.location + '#summary';
     })
 
     .catch(function(error) {
