@@ -75,7 +75,7 @@ a:hover {
    */
   height: 0;
   width: 100%;
-  padding-bottom: 50%;
+  padding-bottom: 60%;
   /* margin-top: 10px; */
 
   /* My friend Shaun (Carleton CS '02) is even worse than I am at the details of
@@ -117,7 +117,8 @@ a:hover {
   display:block;
   float:left;
   width:90%;
-  margin:5%;
+  padding:3%;
+  margin-top:60px;
   
 }
 
@@ -133,6 +134,9 @@ select{
 }
 
 
-
+.about{
+  padding: 3%;
+  margin-top: 60px;
+}
 
 

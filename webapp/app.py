@@ -17,6 +17,14 @@ app.register_blueprint(api.api, url_prefix='/')
 def home():
     return flask.render_template('index.html')
 
+@app.route('/chart')
+def chart():
+    return flask.render_template('chart.html')
+
+@app.route('/about')
+def about():
+    return flask.render_template('about.html')
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('A world-happiness application, including API & DB')
     parser.add_argument('host', help='the host to run on')

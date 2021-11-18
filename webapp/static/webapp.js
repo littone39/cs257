@@ -116,24 +116,26 @@ function initializeMap() {
     // fetch(url, {method: 'get'})
 
     // .then((response) => response.json())
-
-    //countryInfo = create a dictionary of country abreviation geography.properties.name =  
-    var map = new Datamap({ element: document.getElementById('map-container'), // where in the HTML to put the map
-                            scope: 'world', // which map?
-                            projection: 'equirectangular', // what map projection? 'equirectangular' or 'mercator' is also an option
-                            done: onMapDone, // once the map is loaded, call this function
-                            //data: extraCountryInfo, // here's some data that will be used by the popup template lets replace this with our own data
-                            fills: { defaultFill: '#999999' }, // change this fill to the one corresponding to the data
-                            geographyConfig: {
-                                //popupOnHover: false, // You can disable the hover popup
-                                //highlightOnHover: false, // You can disable the color change on hover
-                                popupTemplate: hoverPopupTemplate, // call this to obtain the HTML for the hover popup
-                                borderColor: '#eeeeee', // state/country border color
-                                highlightFillColor: '#99dd99', // color when you hover on a state/country
-                                highlightBorderColor: '#000000', // border color when you hover on a state/country
-                            }
-                          });
-}
+    var page_map = document.getElementById('map-container');
+    
+    if (page_map){
+        //countryInfo = create a dictionary of country abreviation geography.properties.name =  
+        var map = new Datamap({ element: page_map, // where in the HTML to put the map
+                                scope: 'world', // which map?
+                                projection: 'equirectangular', // what map projection? 'equirectangular' or 'mercator' is also an option
+                                done: onMapDone, // once the map is loaded, call this function
+                                //data: extraCountryInfo, // here's some data that will be used by the popup template lets replace this with our own data
+                                fills: { defaultFill: '#999999' }, // change this fill to the one corresponding to the data
+                                geographyConfig: {
+                                    //popupOnHover: false, // You can disable the hover popup
+                                    //highlightOnHover: false, // You can disable the color change on hover
+                                    popupTemplate: hoverPopupTemplate, // call this to obtain the HTML for the hover popup
+                                    borderColor: '#eeeeee', // state/country border color
+                                    highlightFillColor: '#99dd99', // color when you hover on a state/country
+                                    highlightBorderColor: '#000000', // border color when you hover on a state/country
+                                }
+                            });
+}}
 
 // This gets called once the map is drawn, so you can set various attributes like
 // state/country click-handlers, etc.
@@ -252,6 +254,8 @@ function onCountryClick(geography) {
             countrySummaryTitle.innerHTML = country_name;
             // countrySummaryTitle..scrollIntoView();
         }
+
+        window.location = window.location + '#summary';
     })
 
     .catch(function(error) {
@@ -272,15 +276,15 @@ function createChartOnClick() {
         fetch(url, {method: 'get'})
 
         .then((response) => response.json())
-        .then(function(data){
+        .then(function(chart_data){
             let plot_data = [];
             let x_max = 0
-            for(let i = 0; i < data.length; i++){
-                point_x = data[i]["x"];
+            for(let i = 0; i < chart_data.length; i++){
+                point_x = chart_data[i]["x"];
                 if(point_x > x_max){
                     x_max = point_x;
                 };
-                point_y = data[i]["y"];
+                point_y = chart_data[i]["y"];
                 if(point_x != null && point_y != null){
                     plot_data.push({x:point_x,y:point_y});
                 };
@@ -303,6 +307,37 @@ function createChartOnClick() {
 
             /* Initialize the chart with the above settings */
             new Chartist.Line('#sample-line-chart', data, options);
+
+            // create chart.js graph below
+            const new_data = {
+                datasets: [{
+                  label: 'Scatter Dataset',
+                  data: plot_data,
+                  backgroundColor: 'rgb(255, 99, 132)'
+                }],
+              };
+            const config = {
+            type: 'scatter',
+            data: new_data,
+            options: {
+                scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom'
+                }
+                },
+                plugins: {
+                    title: {
+                      display: true,
+                      text: 'Chart Title',
+                    }
+                  }
+            }
+            };
+            const myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+              );
 
             
         })
