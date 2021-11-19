@@ -25,6 +25,10 @@ def chart():
 def about():
     return flask.render_template('about.html')
 
+@app.route('/map')
+def map():
+    return flask.render_template('map.html')
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('A world-happiness application, including API & DB')
     parser.add_argument('host', help='the host to run on')
