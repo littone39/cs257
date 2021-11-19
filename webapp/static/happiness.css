@@ -127,6 +127,11 @@ a:hover {
   background-color:white;
 }
 
+.chart{
+  width: 70%;
+  padding: 3%;
+}
+
 select{
   background-color:aquamarine;
   border-radius: 0px;
