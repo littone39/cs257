@@ -21,14 +21,15 @@
 
     <!--chart.js script-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline"></script>
 
     <!-- script for datamaps library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='datamaps.world.min.js') }}"
-    ></script>
+    ></script> -->
 
 
     <title>World Happiness Tracker</title>
@@ -79,7 +80,9 @@
     <!--GRAPH -->
     <div id="chart-container" class="selectors-and-chart">
         <h2>Compare Variables</h2>
-        <p>Select two variables to analyze their relationship. Each dot represents the data of one country.</p>
+        <p>Analyze global trends by comparing happiness to 
+          other quality of life factors. We use life ladder score as a proxy measure of happiness.
+          Each dot represents the data of a single country from the year 2021.</p>
         <p class="select-axis">X-Axis <select id="x_selector">
             <option value="">--</option>
             <option value="life_ladder">Life Ladder</option>

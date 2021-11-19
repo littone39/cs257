@@ -119,8 +119,9 @@ def get_graph_coords(x_axis, y_axis):
     if x_axis not in var_list or y_axis not in var_list:
         return json.dumps([])
     
-    query = 'SELECT world_happiness.country_id,' + x_axis + ',' + y_axis + \
-        ' FROM world_happiness WHERE year = 2021;'
+    query = 'SELECT countries.country_name,' + x_axis + ',' + y_axis + \
+        ' FROM world_happiness, countries WHERE countries.id = world_happiness.country_id \
+            AND year = 2021;'
 
     coords = []
     try:
@@ -129,7 +130,7 @@ def get_graph_coords(x_axis, y_axis):
         cursor.execute(query)
         for row in cursor:
             print(row)
-            coordinate = {'id':row[0], 'x':row[1], 'y':row[2]}
+            coordinate = {'country_name':row[0], 'x':row[1], 'y':row[2]}
             coords.append(coordinate)
         cursor.close()
         connection.close()

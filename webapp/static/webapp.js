@@ -297,7 +297,8 @@ function createChartOnClick() {
         .then((response) => response.json())
         .then(function(chart_data){
             let plot_data = [];
-            let x_max = 0
+            let labels = [];
+            let x_max = 0;
             for(let i = 0; i < chart_data.length; i++){
                 point_x = chart_data[i]["x"];
                 if(point_x > x_max){
@@ -306,51 +307,62 @@ function createChartOnClick() {
                 point_y = chart_data[i]["y"];
                 if(point_x != null && point_y != null){
                     plot_data.push({x:point_x,y:point_y});
+                    labels.push(chart_data[i]["country_name"]);
                 };
             };
-            
-            labels = []
-            for(let i=0; i<x_max; i++){
-                labels.push(i);
-            };
-            var data = {
-                labels: labels,
-                series: [
-                    {data : plot_data}
-                ],
-                
-            };
-            var options = {
-                showLine: false
-            };
 
-            /* Initialize the chart with the above settings */
-            new Chartist.Line('#sample-line-chart', data, options);
-
-            // create chart.js graph below
-            const new_data = {
+            // chart.js graph below
+            const data = {
                 datasets: [{
-                  label: 'Scatter Dataset',
+                  label: 'Country data',
+                  labels: labels, // this is where we put the list of labels
                   data: plot_data,
-                  backgroundColor: 'rgb(255, 99, 132)'
+                  backgroundColor: 'rgb(255, 99, 132)', //pink dots
+                  trendlineLinear: {
+                    style: "rgb(43 ,66 ,255, 0.3)",
+                    lineStyle: "dotted|solid",
+                    width: 2
+                }
                 }],
               };
             const config = {
             type: 'scatter',
-            data: new_data,
+            data: data,
             options: {
                 scales: {
-                x: {
-                    type: 'linear',
-                    position: 'bottom'
-                }
+                    x: {
+                        type: 'linear',
+                        position: 'bottom',
+                        title:{
+                            display: true,
+                            text: "this is the x axis title"
+                        }
+                    },
+                    y: {
+                        title:{
+                            display: true,
+                            text: "this is the y axis title"
+                        }
+                      }
                 },
                 plugins: {
                     title: {
                       display: true,
-                      text: 'Chart Title',
-                    }
-                  }
+                      text: 'Life Ladder Score vs ___',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                var label = tooltipItem.dataset.labels[tooltipItem.dataIndex];
+                                var x_coord = tooltipItem.parsed.x;
+                                var y_coord = tooltipItem.parsed.y;
+                                return label + ' (' + x_coord + ', ' + y_coord + ')';
+                            },
+
+                        }
+
+                    },
+                  },
             }
             };
             const myChart = new Chart(
@@ -364,33 +376,6 @@ function createChartOnClick() {
         .catch(function(error) {
             console.log(error);
         });
-
-        //check if either are null
-        //add dict to API with column names to no spaces names
-
-        // make sure x_axis or y_axis index is not null, else exclude that data
-
-        // Data & x-axis labels
-
-        
-
-        /* x_data = [];
-         y_data = [];
-        for z in countries:
-            check if not null
-            x_data.append(z[x]) 
-        series: [
-                { data: x_data },
-                { data: y_data }
-            ] 
-        */
-
-    
-        // There are many options you can add to a chart. For this
-        // sample we're not using any. The documentation at Chartist's website
-        // says "check the samples for a complete list", but honestly, they do
-        // a mediocre job of pointing you to them.
-        // https://gionkunz.github.io/chartist-js/
         
     }
         
