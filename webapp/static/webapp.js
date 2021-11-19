@@ -282,15 +282,17 @@ function onCountryClick(geography) {
     });}
 
 function createChartOnClick() {
+    console.log("inside create chart")
+    var chart = document.getElementById('chart');
+    if(chart){
+        chart.innerHTML = '<canvas id="myChart" width="60%" height="40%"></canvas>';
+    }
     x_selector = document.getElementById('x_selector');
     y_selector = document.getElementById('y_selector');
-    title = document.getElementById("chart-title")
     if(x_selector && y_selector){
         x_axis = x_selector.value
         y_axis = y_selector.value
-        if(title){
-            title.innerHTML = x_axis + " vs " + y_axis;
-        }
+        
         let url = getAPIBaseURL() + "graph/" + x_axis + "/" + y_axis
         fetch(url, {method: 'get'})
 
