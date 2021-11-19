@@ -83,7 +83,8 @@
         <p>Analyze global trends by comparing happiness to 
           other quality of life factors. We use life ladder score as a proxy measure of happiness.
           Each dot represents the data of a single country from the year 2021.</p>
-        <p class="select-axis">X-Axis <select id="x_selector">
+          <p id= "x_selector" >X-Axis: Life Ladder</p>
+        <!-- <p class="select-axis">X-Axis <select id="x_selector">
             <option value="">--</option>
             <option value="life_ladder">Life Ladder</option>
             <option value="gdp">GDP Per Capita</option>
@@ -92,10 +93,10 @@
             <option value="freedom">Freedom</option>
             <option value="generosity">Generosity</option>
             <option value="percieved_corruption">Percieved Corruption</option>
-        </select></p>
+        </select></p> -->
         <p class="select-axis">Y-Axis <select id="y_selector">
             <option value="">--</option>
-            <option value="life_ladder">Life Ladder</option>
+            <!-- <option value="life_ladder">Life Ladder</option> -->
             <option value="gdp">GDP Per Capita</option>
             <option value="social_support">Social Support</option>
             <option value="life_expectancy">Life Expectancy</option>
@@ -104,9 +105,12 @@
             <option value="percieved_corruption">Percieved Corruption</option>
         </select></p>
         <button id="graph_button">Plot</button>
-        <div id="chart" class="chart">
-            <!--chart.js-->
-            <!-- <canvas id="myChart" width="60%" height="40%"></canvas> -->
+        <div>
+          <div id="chart" class="chart">
+              <!--chart.js-->
+              <!-- <canvas id="myChart" width="60%" height="40%"></canvas> -->
+          </div>
+          <div id="variable-description"></div>
         </div>
     </div>
 

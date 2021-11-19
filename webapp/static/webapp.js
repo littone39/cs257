@@ -282,15 +282,17 @@ function onCountryClick(geography) {
     });}
 
 function createChartOnClick() {
-    console.log("inside create chart")
     var chart = document.getElementById('chart');
     if(chart){
         chart.innerHTML = '<canvas id="myChart" width="60%" height="40%"></canvas>';
     }
-    x_selector = document.getElementById('x_selector');
+    //x_selector = document.getElementById('x_selector');
+    var y_axis_labels = {'social_support': 'Social Support', 
+    'gdp':'GDP Per Capita',
+     'freedom':'Freedom', 'generosity':"Generosity", 'percieved_corruption': 'Percieved Corruption'};
     y_selector = document.getElementById('y_selector');
     if(x_selector && y_selector){
-        x_axis = x_selector.value
+        x_axis = "life_ladder" // only compare to life ladder
         y_axis = y_selector.value
         
         let url = getAPIBaseURL() + "graph/" + x_axis + "/" + y_axis
@@ -337,20 +339,20 @@ function createChartOnClick() {
                         position: 'bottom',
                         title:{
                             display: true,
-                            text: "this is the x axis title"
+                            text: "Life Ladder Score"
                         }
                     },
                     y: {
                         title:{
                             display: true,
-                            text: "this is the y axis title"
+                            text: y_axis_labels[y_axis]
                         }
                       }
                 },
                 plugins: {
                     title: {
                       display: true,
-                      text: 'Life Ladder Score vs ___',
+                      text: 'Life Ladder Score vs ' + y_axis_labels[y_axis],
                     },
                     tooltip: {
                         callbacks: {
@@ -371,6 +373,14 @@ function createChartOnClick() {
                 document.getElementById('myChart'),
                 config
               );
+            
+              var description = document.getElementById('variable-description')
+            // Add brief definition of variables measured 
+            //   if(description){
+            //     var description_text = "<p><b>Life Ladder</b> is measured by [insert description]</p>" + 
+            //     "<p><b>" + y_axis_labels[y_axis] + ": [Insert description here]</b></p>";
+            //     description.innerHTML = description_text;  
+            // }
 
             
         })

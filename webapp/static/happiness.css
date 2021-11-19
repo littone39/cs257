@@ -10,7 +10,6 @@
     for CS 257
 */
 body{
-  background-color: #a9a4fe;
   width: 100%;
   padding: 0px;
 }
@@ -83,7 +82,9 @@ a:hover {
    * his color choices, he makes stuff orange to force their hand. I am using
    * orange here both to remind you to change the color, and to make visible the
    * size and aspect ratio of the US map object. */
-  background:#FCBE2D;
+  
+  
+   background:#FCBE2D;
    /* background: #a9a4fe; */
 }
 
@@ -91,7 +92,6 @@ a:hover {
   float: left;
   width: 40%;
 }
-
 
 .welcome{
   padding-top:50px;
@@ -133,7 +133,7 @@ a:hover {
 }
 
 select{
-  background-color:aquamarine;
+  /* background-color:beige; */
   border-radius: 0px;
 
 }
@@ -144,4 +144,28 @@ select{
   margin-top: 60px;
 }
 
+.home{
+  text-align: center;
+  /* margin: 5%; */
+}
 
+a.home_button{
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 30px;
+  margin: 2%;
+  text-decoration: none;
+  background-color: #0fb9be;
+  height:6%;
+  width: 15%;
+  border-radius: 10px;
+}
+
+a.home_button:hover{
+  background-color:#a9a4fe;
+}
+
+.map-body{
+  margin-top: 100px;
+}
