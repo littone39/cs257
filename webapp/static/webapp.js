@@ -162,7 +162,8 @@ function displayCountryInfo(country_abbreviation){
     .then((response) => response.json())
     .then(function(country_summary){
         let tableBody = '';
-        
+        let ladder_data = [];
+        let labels = []
         if(country_summary.length == 0){
             tableBody += 'This country has no information in our dataset';
         }
@@ -198,6 +199,8 @@ function displayCountryInfo(country_abbreviation){
                         + '<td>' + country_info['freedom'] + '</td>'
                         + '<td>' + country_info['generosity'] + '</td>'
                         + '</tr>\n';
+            ladder_data.push(country_info['life_ladder']);
+            labels.push(country_info['year']);
                 
         }
 
@@ -208,8 +211,54 @@ function displayCountryInfo(country_abbreviation){
         var countrySummaryTitle = document.getElementById('country-title');
         if(countrySummaryTitle){
             countrySummaryTitle.innerHTML = country_summary[0]['country_name'];
-    
         }
+        // make the little chart 
+        var happiness_chart = document.getElementById('happiness_chart');
+        console.log('next we check')
+        if(happiness_chart){
+            console.log('happiness_chart exists');
+            happiness_chart.innerHTML = '<canvas id="my_chart" width="60%" height="40%"></canvas>';
+        }
+        //setups 
+        
+        const data = {
+        labels: labels,
+        datasets: [{
+            label: '',
+            data: ladder_data,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+        };
+        //config
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        // type: 'linear',
+                        // position: 'bottom',
+                        title:{
+                            display: true,
+                            text: "Life Ladder Score"
+                        }
+                    },
+                },
+                plugins: {
+                    title: {
+                      display: true,
+                      text: 'Happiness Over Time',
+                    },
+                  },
+            }
+          };
+        //make the actual chart 
+        const myChart = new Chart(
+            document.getElementById('my_chart'),
+            config
+          );
 
     })
 

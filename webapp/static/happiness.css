@@ -109,6 +109,12 @@ a:hover {
   margin-left: 3%;
   
 }
+#happiness_chart{
+  width: 30%;
+  float:left;
+  padding:2%;
+ 
+}
 .hoverpopup {
   background: #eeeeee;
   border: 1px black solid;
@@ -136,7 +142,7 @@ a:hover {
   background-color:white;
 }
 
-.chart{
+.correlation-chart{
   width: 70%;
   padding: 3%;
 }
