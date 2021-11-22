@@ -39,6 +39,20 @@ a:hover {
   width: 30%;
   float:left;
 }
+.summary{
+  width:30%;
+  float:left;
+  /* padding:0%; */
+  font-size: 80%;
+  
+  padding-top: 1%;
+
+  
+}
+.country-summary-list{
+  list-style-type: none;
+  padding-bottom:none;
+}
 /* #country-info-container{
   width: 100%;
   height: auto;

@@ -161,56 +161,82 @@ function displayCountryInfo(country_abbreviation){
 
     .then((response) => response.json())
     .then(function(country_summary){
-        let tableBody = '';
+        // let tableBody = '';
         let ladder_data = [];
-        let labels = []
-        if(country_summary.length == 0){
-            tableBody += 'This country has no information in our dataset';
-        }
+        let labels = [];
         
-        tableBody += '<tr>\
-                        <td><b>Year</b></td>\
-                        <td><b>Life Ladder Score</b></td>\
-                        <td><b>GDP Per Capita</b></td>\
-                        <td><b>Social Support</b></td>\
-                        <td><b>Life Expectancy</b></td>\
-                        <td><b>Freedom</b></td>\
-                        <td><b>Generosity</b></td>\
-                        </tr>\n'
+        // if(country_summary.length == 0){
+        //     tableBody += 'This country has no information in our dataset';
+        // }
+        
+        // tableBody += '<tr>\
+        //                 <td><b>Year</b></td>\
+        //                 <td><b>Life Ladder Score</b></td>\
+        //                 <td><b>GDP Per Capita</b></td>\
+        //                 <td><b>Social Support</b></td>\
+        //                 <td><b>Life Expectancy</b></td>\
+        //                 <td><b>Freedom</b></td>\
+        //                 <td><b>Generosity</b></td>\
+        //                 </tr>\n'
 
-        tableBody += '<tr>\
-                        <td>(Year the data is from)</td>\
-                        <td>(Cantril ladder score rating life on a scale of 0-10)</td>\
-                        <td>(Average GDP per person)</td>\
-                        <td>(Liklihood of having someone to rely on around you)</td>\
-                        <td>(Average life span)</td>\
-                        <td>(Satisfaction level with ability to choose what you want to do)</td>\
-                        <td>(Liklihood of helping out one another)</td>\
-                        </tr>\n'
+        // tableBody += '<tr>\
+        //                 <td>(Year the data is from)</td>\
+        //                 <td>(Cantril ladder score rating life on a scale of 0-10)</td>\
+        //                 <td>(Average GDP per person)</td>\
+        //                 <td>(Liklihood of having someone to rely on around you)</td>\
+        //                 <td>(Average life span)</td>\
+        //                 <td>(Satisfaction level with ability to choose what you want to do)</td>\
+        //                 <td>(Liklihood of helping out one another)</td>\
+        //                 </tr>\n'
 
         for (let k = 0; k < country_summary.length; k++) {
             let country_info = country_summary[k];
-            tableBody += '<tr>'
-                        + '<td>' + country_info['year'] + '</td>'
-                        + '<td>' + country_info['life_ladder'] + '</td>'
-                        + '<td>' + country_info['gdp'] + '</td>'
-                        + '<td>' + country_info['social_support'] + '</td>'
-                        + '<td>' + country_info['life_expectancy'] + '</td>'
-                        + '<td>' + country_info['freedom'] + '</td>'
-                        + '<td>' + country_info['generosity'] + '</td>'
-                        + '</tr>\n';
+            // tableBody += '<tr>'
+            //             + '<td>' + country_info['year'] + '</td>'
+            //             + '<td>' + country_info['life_ladder'] + '</td>'
+            //             + '<td>' + country_info['gdp'] + '</td>'
+            //             + '<td>' + country_info['social_support'] + '</td>'
+            //             + '<td>' + country_info['life_expectancy'] + '</td>'
+            //             + '<td>' + country_info['freedom'] + '</td>'
+            //             + '<td>' + country_info['generosity'] + '</td>'
+            //             + '</tr>\n';
             ladder_data.push(country_info['life_ladder']);
             labels.push(country_info['year']);
+            
                 
         }
-
-        var countrySummaryElement = document.getElementById('country-summary');
-        if(countrySummaryElement){
-            countrySummaryElement.innerHTML = tableBody;
+        let recent_data = country_summary[country_summary.length - 1];
+        let summary = '';
+        var no_data = (country_summary.length == 0);
+        if(no_data){
+            summary = 'This country has no information in our dataset';
+        }else{
+            summary = '<ul class="country-summary-list">'
+                        + '<li><b>Year: </b>' + recent_data['year'] + '</li>'
+                        + '<li><b>Life Ladder: </b>' + recent_data['life_ladder'] + '</li>'
+                        + '<li><b>GDP Per Capita: </b>' + recent_data['gdp'] + '</li>'
+                        + '<li><b>Social Support:</b>' + recent_data['social_support'] + '</li>'
+                        + '<li><b>Life Expectancy:</b>' + recent_data['life_expectancy'] + '</li>'
+                        + '<li><b>Freedom:</b>' + recent_data['freedom'] + '</li>'
+                        + '<li><b>Generosity:</b>' + recent_data['generosity'] + '</li>'
+                        + '</ul>';
         }
+
+        var summaryElement = document.getElementById('summary');
+        if(summaryElement){
+            summaryElement.innerHTML = summary;
+        }
+        // var countrySummaryElement = document.getElementById('country-summary');
+        // if(countrySummaryElement){
+        //     countrySummaryElement.innerHTML = tableBody;
+        // }
         var countrySummaryTitle = document.getElementById('country-title');
         if(countrySummaryTitle){
-            countrySummaryTitle.innerHTML = country_summary[0]['country_name'];
+            if(no_data){
+                countrySummaryTitle.innerHTML = '';
+            }else{
+                countrySummaryTitle.innerHTML = country_summary[0]['country_name'];
+            }
         }
         // make the little chart 
         var happiness_chart = document.getElementById('happiness_chart');
@@ -255,10 +281,12 @@ function displayCountryInfo(country_abbreviation){
             }
           };
         //make the actual chart 
+        if(!no_data){
         const myChart = new Chart(
             document.getElementById('my_chart'),
             config
           );
+        }
 
     })
 
