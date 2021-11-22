@@ -73,8 +73,8 @@ a:hover {
    * https://css-tricks.com/aspect-ratio-boxes/
    */
   height: 0;
-  width: 100%;
-  padding-bottom: 75%;
+  width: 70%;
+  padding-bottom: 35%;
   /* margin-top: 10px; */
 
   /* My friend Shaun (Carleton CS '02) is even worse than I am at the details of
@@ -107,8 +107,8 @@ a:hover {
 }
 
 .navbar-color{
-  /* background-color:#FCBE2D;   */
-  background-color :#a9a4fe;
+  background-color:#FCBE2D;   
+  /* background-color :#a9a4fe; */
   color: #30374D;
   font-family: 'DM Sans', sans-serif;
 }

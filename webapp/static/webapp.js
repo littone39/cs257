@@ -117,20 +117,35 @@ function initializeMap() {
 
      .then((response) => response.json())
      .then(function(happiness_scores){
-        countryInfo = happiness_scores;
-        // for(var i=0; i<happiness_scores.length;i++){
-        //     var country = happiness_scores[i]
-        //     green = 255 - (country["life_ladder"] * 20)
-        //     blue = (country["life_ladder"] * 1000)
-        //     color = "#00" + blue;
-        //     countryInfo[country["id"]] = {fillColor:color};
-        //     console.log(country["id"]);
-        // };
+        countryInfo = {};
+        for (const [abbreviation, value] of Object.entries(happiness_scores)) {
+            var color;
+            //check value 
+            if(value < 4.2){
+                //light: color = #c3fff9
+                color = "#C3FFF9";
+            }else if(value < 5.4){
+                //med1: #82bcbc
+                color = "#82BCBC";
+            }else if(value < 6.6){
+                //med2: #447c81
+                color = "#447C81"
+            }else{
+                //dark: #00424b
+                color = "#00424B"
+            }
+            
+            countryInfo[abbreviation] = {"fillColor":color}
+            
+          }
+          
+        //countryInfo = happiness_scores;
     
         var page_map = document.getElementById('map-container');
         
         if (page_map){
-            //countryInfo = create a dictionary of country abreviation geography.properties.name =  
+            //countryInfo = create a dictionary of country abreviation geography.properties.name = 
+            console.log(countryInfo) 
             var map = new Datamap({ element: page_map, // where in the HTML to put the map
                                     scope: 'world', // which map?
                                     projection: 'equirectangular', // what map projection? 'equirectangular' or 'mercator' is also an option
@@ -321,7 +336,7 @@ function createChartOnClick() {
                   label: 'Country data',
                   labels: labels, // this is where we put the list of labels
                   data: plot_data,
-                  backgroundColor: 'rgb(255, 99, 132)', //pink dots
+                  backgroundColor: '#0B86B5', //blue dots
                   trendlineLinear: {
                     style: "rgb(43 ,66 ,255, 0.3)",
                     lineStyle: "dotted|solid",

@@ -67,13 +67,13 @@ def get_all_happiness():
         cursor = connection.cursor()
         cursor.execute(query)
         for row in cursor:
-            #entry = {'id':row[0],'life_ladder':row[1]}
-            
-            r = 0
-            g = 255 - (int(row[1]*20))
-            b = (int(row[1]*20))
-            color = '#%02X%02X%02X' % (r, g, b)
-            happiness_dict[row[0]] = {"fillColor":color}
+            # entry = {'id':row[0],'life_ladder':row[1]}
+            # r = 0
+            # g = 255 - (int(row[1]*20))
+            # b = (int(row[1]*20))
+            # color = '#%02X%02X%02X' % (r, g, b)
+            # happiness_dict[row[0]] = {"fillColor":color}
+            happiness_dict[row[0]] = row[1]
         cursor.close()
         connection.close()
     except Exception as e:
