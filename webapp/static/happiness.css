@@ -173,7 +173,17 @@ a:hover {
   background-color:#FCBE2D;   
   /* background-color :#a9a4fe; */
   color: #30374D;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.nav-item a{
+  color: #00424B;
+}
+
+.nav-item a:hover{
+  color: #ffffff;;
+  background-color: #0fb9be;
+  border-radius: 10px;
 }
 
 #chart-container{
@@ -225,6 +235,7 @@ a.home_button{
 
 a.home_button:hover{
   background-color:#a9a4fe;
+  color: #ffffff;
 }
 
 .map-body{
