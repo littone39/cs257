@@ -13,7 +13,7 @@ function initialize() {
     loadCountriesSelector();
     initializeMap();
     
-    let element = document.getElementById('graph_button');
+    let element = document.getElementById('graph-button');
     if (element) {
         element.onclick = createChartOnClick;
     }
@@ -252,6 +252,10 @@ function createChartOnClick() {
     if(x_selector && y_selector){
         x_axis = "life_ladder" // only compare to life ladder
         y_axis = y_selector.value
+        if(y_axis == ""){
+            return
+        }
+        
         
         let url = getAPIBaseURL() + "graph/" + x_axis + "/" + y_axis
         fetch(url, {method: 'get'})
@@ -279,10 +283,11 @@ function createChartOnClick() {
                   label: 'Country data',
                   labels: labels, // list of labels goes here
                   data: plot_data,
-                  backgroundColor: '#0B86B5', //blue dots
+                  backgroundColor: '#447C81', //'#00424B',//'#0B86B5', //blue dot
                   trendlineLinear: {
-                    style: "rgb(43 ,66 ,255, 0.3)",
-                    lineStyle: "dotted|solid",
+                    style: '#FCBE2D',//"rgb(43 ,66 ,255, 0.3)",
+                    // lineStyle: "dotted|solid",
+                    lineStyle: "dotted",
                     width: 2
                 }
                 }],
