@@ -21,8 +21,13 @@ def home():
 def chart():
     return flask.render_template('chart.html')
 
-@app.route('/about')
-def about():
+# @app.route('/about')
+# def about():
+#     return flask.render_template('about.html')
+
+# for some reason the above route breaks (error 404 page not found)
+@app.route('/about-us')
+def about_us():
     return flask.render_template('about.html')
 
 @app.route('/map')

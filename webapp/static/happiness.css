@@ -12,6 +12,7 @@
 body{
   width: 100%;
   padding: 0px;
+  background-color:beige;
 }
 
 /* table {
@@ -92,10 +93,11 @@ a:hover {
    * https://css-tricks.com/aspect-ratio-boxes/
    */
   height: 0;
-  width: 70%;
-  padding-bottom: 30%;
+  width: 68%;
+  padding-bottom: 28%;
   padding-top:5%;
-  /* margin-top: 10px; */
+  /* add margin */
+  margin-left:2% ; 
 
   /* My friend Shaun (Carleton CS '02) is even worse than I am at the details of
    * graphic design. So when he wants to make sure the designers don't preserve
@@ -156,9 +158,11 @@ a:hover {
 
 .legend-container{
   background-color:#FCBE2D;
-  width:70%;
+  width:68%;
   padding-left: 3%;
   padding-bottom: 1%;
+  margin-left: 2%;
+  margin-bottom: 2%;
 }
 #country-title{
   padding-left:2%;
@@ -209,7 +213,17 @@ select{
   /* background-color:beige; */
   border-radius: 0px;
 }
-
+#graph-button {
+  border-radius: 5px;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 .about{
   padding: 3%;
   margin-top: 60px;
@@ -219,6 +233,7 @@ select{
   text-align: center;
   /* margin: 5%; */
 }
+
 
 a.home_button{
   display: inline-block;
@@ -239,5 +254,6 @@ a.home_button:hover{
 }
 
 .map-body{
-  margin-top: 70px;
+  padding-top: 70px;
+  /* background-color:beige; */
 }
