@@ -119,7 +119,7 @@ function initializeMap() {
                                         //highlightOnHover: false, // You can disable the color change on hover
                                         popupTemplate: hoverPopupTemplate, // call this to obtain the HTML for the hover popup
                                         borderColor: '#eeeeee', // state/country border color
-                                        highlightFillColor: '#99dd99', // color when you hover on a state/country
+                                        highlightFillColor: 'beige', //'#99dd99',  color when you hover on a state/country
                                         highlightBorderColor: '#000000', // border color when you hover on a state/country
                                     }
                                 });

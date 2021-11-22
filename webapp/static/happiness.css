@@ -14,7 +14,7 @@ body{
   padding: 0px;
 }
 
-table {
+/* table {
     border-collapse: collapse;
     border: 1px solid black;
     
@@ -23,7 +23,7 @@ table {
 th, td {
     border: 1px solid black;
     padding: 15px;
-}
+} */
 
 a {
   color: #0B86B5;
@@ -36,7 +36,7 @@ a:hover {
   cursor: pointer;
 }
 #country-title{
-  width: 20%;
+  width: 30%;
   float:left;
 }
 /* #country-info-container{
@@ -79,7 +79,8 @@ a:hover {
    */
   height: 0;
   width: 70%;
-  padding-bottom: 35%;
+  padding-bottom: 30%;
+  padding-top:5%;
   /* margin-top: 10px; */
 
   /* My friend Shaun (Carleton CS '02) is even worse than I am at the details of
@@ -111,9 +112,42 @@ a:hover {
 }
 #happiness_chart{
   width: 30%;
-  float:left;
+  float:right;
   padding:2%;
- 
+  /* position:absolute; */
+}
+.lightest{
+  background-color: #C3FFF9;
+}
+.mid-color1{
+  background-color:#82BCBC;
+}
+.mid-color2{
+  background-color:#447C81;
+}
+.darkest{
+  background-color:#00424B;
+}
+.beige{
+  color:beige;
+}
+#map-legend{
+  width:12%;
+  font-size: 50%;
+  padding:0px;
+  margin:0px;
+  clear:left;
+  background-color:beige;
+}
+
+.legend-container{
+  background-color:#FCBE2D;
+  width:70%;
+  padding-left: 3%;
+  padding-bottom: 1%;
+}
+#country-title{
+  padding-left:2%;
 }
 .hoverpopup {
   background: #eeeeee;
@@ -150,9 +184,7 @@ a:hover {
 select{
   /* background-color:beige; */
   border-radius: 0px;
-
 }
-
 
 .about{
   padding: 3%;
