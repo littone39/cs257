@@ -19,7 +19,7 @@ function initialize() {
     }
     let selector = document.getElementById('country_selector');
     if (selector) {
-        element.onchange = onCountiresSelectionChanged;
+        selector.onchange = onCountiresSelectionChanged;
     }
 }
 
@@ -48,9 +48,12 @@ function loadCountriesSelector() {
         selectorBody += '<option value = "0">--</option>\n'
         for (let k = 0; k < countries.length; k++) {
             let country = countries[k];
-            selectorBody += '<option value="' + country['country_name'] + '">'
-                                + country['country_name']
-                                + '</option>\n';
+            // selectorBody += '<option value="' + country['country_name'] + '">'
+            //                     + country['country_name']
+            //                     + '</option>\n';
+            selectorBody += '<option value="' + country['id'] + '">'
+                                 + country['country_name']
+                                 + '</option>\n';
         }
 
         let selector = document.getElementById('country_selector');
@@ -68,46 +71,8 @@ function loadCountriesSelector() {
 //Displays table of the new country selected
 function onCountiresSelectionChanged() {
     
-    let countryName = this.value;
-    displayCountryInfo(countryName);
-    console.log(countryName)
-    let url = getAPIBaseURL() + 'country/' + countryName;
-
-    fetch(url, {method: 'get'})
-
-    .then((response) => response.json())
-
-    .then(function(world_happiness) {
-        let tableBody = '';
-        tableBody += '<tr>\
-                        <td>Year</td>\
-                        <td>Life Ladder Score</td>\
-                        <td>GDP Per Capita</td>\
-                        <td>Social Support</td>\
-                        <td>Life Expectancy</td>\
-                        <td>Freedom</td>\
-                        </tr>\n'
-        for (let k = 0; k < world_happiness.length; k++) {
-            let country_info = world_happiness[k];
-            tableBody += '<tr>'
-                            + '<td>' + country_info['year'] + '</td>'
-                            + '<td>' + country_info['life_ladder'] + '</td>'
-                            + '<td>' + country_info['gdp'] + '</td>'
-                            + '<td>' + country_info['social_support'] + '</td>'
-                            + '<td>' + country_info['life_expectancy'] + '</td>'
-                            + '<td>' + country_info['freedom'] + '</td>'
-                            + '</tr>\n';
-        }
-
-        // Put the table body we just built inside the table that's already on the page.
-        let countriesTable = document.getElementById('countries_table');
-        if (countriesTable) {
-          countriesTable.innerHTML = tableBody;
-        }
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+    let country_abbreviation = this.value;
+    displayCountryInfo(country_abbreviation);
 } 
 
 function initializeMap() {
@@ -183,58 +148,14 @@ function hoverPopupTemplate(geography, data) {
 function onCountryClick(geography) {
     // set selector to '--'
     document.getElementById('country_selector').getElementsByTagName('option')[0].selected = '--';
-    let country_name = geography.properties.name
-    displayCountryInfo(country_name)
+    //let country_name = geography.properties.name;
+    let country_abbreviation = geography.id;
+    displayCountryInfo(country_abbreviation);
 }
 
-function displayCountryInfo(country_name){
-    //make a dictionary between geography names of countries and our names
-    var countryDict = {
-        "Republic of the Congo": "Congo (Brazzaville)",
-        "Democratic Republic of the Congo": "Congo (Kinshasa)",
-        "Somaliland": "Somaliland region",
-        "United Republic of Tanzania" : "Tanzania",
-        "Taiwan" : "Taiwan Province of China",
-        "Republic of Serbia" : "Serbia",
-        "Macedonia" : "North Macedonia",
-        "United States of America" : "United States"
-      };
-
-      if(country_name in countryDict){
-          country_name = countryDict[country_name];
-      }
-
-    //Countries that have no information:
-    /*
-    Brunei : not
-    Northern Cyprus : not
-    Greenland : not
-    French Guiana : not
-    Faulkland Islands : not 
-    Western Sahara : not
-    Guinea Bussau : not
-    Republic of the Congo : Congo (Brazzaville)
-    Democratic Republic of the Congo : Congo (Kinshasa)
-    Somaliland : Somaliland region
-    Eritrea : not
-    United Republic of Tanzania : Tanzania
-    Equatorial Guinea : not
-    Papa New Guinea :not 
-    Puerto Rico : not
-    The Bahamas : not 
-    French Southern and Antarctic Lands : not
-    Fiji : not
-    Vanuatu :not 
-    Solomon Islands : not
-    Taiwan : Taiwan Province of China
-    North Korea : not
-    New Caledonia : not
-    Republic of Serbia : Serbia
-    Macedonia : North Macedonia
-    United States of America : United States
-     */
+function displayCountryInfo(country_abbreviation){
     
-    let url = getAPIBaseURL() + 'country/' + country_name;
+    let url = getAPIBaseURL() + 'country/' + country_abbreviation;
 
     fetch(url, {method: 'get'})
 
@@ -286,12 +207,10 @@ function displayCountryInfo(country_name){
         }
         var countrySummaryTitle = document.getElementById('country-title');
         if(countrySummaryTitle){
-            countrySummaryTitle.innerHTML = country_name;
-            // countrySummaryTitle..scrollIntoView();
+            countrySummaryTitle.innerHTML = country_summary[0]['country_name'];
+    
         }
 
-        // scrolls down to country table
-        //window.location = window.location + '#summary';
     })
 
     .catch(function(error) {
@@ -305,7 +224,7 @@ function createChartOnClick() {
     }
     var y_axis_labels = {'social_support': 'Social Support', 
     'gdp':'GDP Per Capita',
-     'freedom':'Freedom', 'generosity':"Generosity", 'percieved_corruption': 'Percieved Corruption'};
+     'freedom':'Freedom', 'generosity':"Generosity", 'percieved_corruption': 'Percieved Corruption', 'life_expectancy':'Life Expectancy'};
     y_selector = document.getElementById('y_selector');
     if(x_selector && y_selector){
         x_axis = "life_ladder" // only compare to life ladder

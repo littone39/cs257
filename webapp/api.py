@@ -35,8 +35,8 @@ def get_countries():
         by country name.
 
     '''
-    query = '''SELECT id, country_name from countries ORDER BY country_name'''
-
+    # query = '''SELECT id, country_name from countries ORDER BY country_name'''
+    query = '''SELECT * from country_abbreviations ORDER BY country_name;'''
     country_list = []
     try:
         connection = get_connection()
@@ -67,12 +67,6 @@ def get_all_happiness():
         cursor = connection.cursor()
         cursor.execute(query)
         for row in cursor:
-            # entry = {'id':row[0],'life_ladder':row[1]}
-            # r = 0
-            # g = 255 - (int(row[1]*20))
-            # b = (int(row[1]*20))
-            # color = '#%02X%02X%02X' % (r, g, b)
-            # happiness_dict[row[0]] = {"fillColor":color}
             happiness_dict[row[0]] = row[1]
         cursor.close()
         connection.close()
@@ -81,25 +75,26 @@ def get_all_happiness():
 
     return json.dumps(happiness_dict)
 
-@api.route('/country/<country_name>')
-def get_country(country_name):
+@api.route('/country/<country_abbreviation>')
+def get_country(country_abbreviation):
     ''' returns happiness score for one country for all years provided '''
     # maybe change to:
     # query = select * from world_happiness where country_id = %s
-    query = '''SELECT  * FROM world_happiness, countries
-            WHERE countries.country_name = %s 
+    query = '''SELECT  * FROM world_happiness, countries, country_abbreviations
+            WHERE countries.country_name = country_abbreviations.country_name
+            AND country_abbreviations.abbreviation = %s
             AND countries.id = world_happiness.country_id 
             ORDER BY year;'''
     happiness_list = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query, (country_name,))
+        cursor.execute(query, (country_abbreviation,))
         for row in cursor:
             entry = {'id':row[0],'life_ladder':row[2], 'year':row[1], 'gdp':row[3], \
             'social_support':row[4], 'life_expectancy':row[5], 'freedom':row[6], \
                 'generosity':row[7], 'percieved_corruption':row[8], 'positive_affect':row[9],\
-                    'negative_affect':row[10]}
+                    'negative_affect':row[10], 'country_name':row[12]}
             happiness_list.append(entry)
         cursor.close()
         connection.close()
