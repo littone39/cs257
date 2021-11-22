@@ -67,8 +67,10 @@ function loadCountriesSelector() {
 
 //Displays table of the new country selected
 function onCountiresSelectionChanged() {
+    
     let countryName = this.value;
-
+    displayCountryInfo(countryName);
+    console.log(countryName)
     let url = getAPIBaseURL() + 'country/' + countryName;
 
     fetch(url, {method: 'get'})
@@ -103,14 +105,12 @@ function onCountiresSelectionChanged() {
           countriesTable.innerHTML = tableBody;
         }
     })
-
     .catch(function(error) {
         console.log(error);
     });
 } 
 
 function initializeMap() {
-     
      let url = getAPIBaseURL() + 'countries/happiness';
 
      fetch(url, {method: 'get'})
@@ -129,17 +129,14 @@ function initializeMap() {
                 color = "#82BCBC";
             }else if(value < 6.6){
                 //med2: #447c81
-                color = "#447C81"
+                color = "#447C81";
             }else{
                 //dark: #00424b
-                color = "#00424B"
+                color = "#00424B";
             }
             
-            countryInfo[abbreviation] = {"fillColor":color}
-            
+            countryInfo[abbreviation] = {"fillColor":color};
           }
-          
-        //countryInfo = happiness_scores;
     
         var page_map = document.getElementById('map-container');
         
@@ -184,8 +181,13 @@ function hoverPopupTemplate(geography, data) {
 }
 
 function onCountryClick(geography) {
+    // set selector to '--'
+    document.getElementById('country_selector').getElementsByTagName('option')[0].selected = '--';
     let country_name = geography.properties.name
-    
+    displayCountryInfo(country_name)
+}
+
+function displayCountryInfo(country_name){
     //make a dictionary between geography names of countries and our names
     var countryDict = {
         "Republic of the Congo": "Congo (Brazzaville)",
@@ -301,7 +303,6 @@ function createChartOnClick() {
     if(chart){
         chart.innerHTML = '<canvas id="myChart" width="60%" height="40%"></canvas>';
     }
-    //x_selector = document.getElementById('x_selector');
     var y_axis_labels = {'social_support': 'Social Support', 
     'gdp':'GDP Per Capita',
      'freedom':'Freedom', 'generosity':"Generosity", 'percieved_corruption': 'Percieved Corruption'};
@@ -388,16 +389,6 @@ function createChartOnClick() {
                 document.getElementById('myChart'),
                 config
               );
-            
-              var description = document.getElementById('variable-description')
-            // Add brief definition of variables measured 
-            //   if(description){
-            //     var description_text = "<p><b>Life Ladder</b> is measured by [insert description]</p>" + 
-            //     "<p><b>" + y_axis_labels[y_axis] + ": [Insert description here]</b></p>";
-            //     description.innerHTML = description_text;  
-            // }
-
-            
         })
         
         .catch(function(error) {

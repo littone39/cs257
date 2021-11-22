@@ -35,7 +35,11 @@ a:hover {
   text-decoration: none;
   cursor: pointer;
 }
-#country-info-container{
+#country-title{
+  width: 20%;
+  float:left;
+}
+/* #country-info-container{
   width: 100%;
   height: auto;
   background-color:#a9a4fe;
@@ -55,7 +59,8 @@ a:hover {
   padding: 10%;
   margin: 5%;
   
-}
+} */
+
 /* .country-table{
   padding: 5%;
 } */
@@ -85,7 +90,7 @@ a:hover {
   
   
    background:#FCBE2D;
-   /* background: #a9a4fe; */
+   /* background: #fad889 */
 }
 
 #goals {
@@ -99,6 +104,10 @@ a:hover {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color:aquamarine;
   margin-bottom:0;
+}
+.map-directions{
+  margin-left: 3%;
+  
 }
 .hoverpopup {
   background: #eeeeee;
@@ -167,5 +176,5 @@ a.home_button:hover{
 }
 
 .map-body{
-  margin-top: 100px;
+  margin-top: 70px;
 }
