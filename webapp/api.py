@@ -29,11 +29,10 @@ def help():
 
 @api.route('/countries/') 
 def get_countries():
-    ''' Returns a list of all the countries in our database. 
+    ''' Returns a list of all the countries in our database and their ids. 
 
-        By default, the list is presented in alphabetical order
+        The list is presented in alphabetical order
         by country name.
-
     '''
     query = '''SELECT * from country_abbreviations ORDER BY country_name;'''
     country_list = []
@@ -75,9 +74,8 @@ def get_all_happiness():
 
 @api.route('/country/<country_abbreviation>')
 def get_country(country_abbreviation):
-    ''' returns happiness score for one country for all years provided '''
-    # maybe change to:
-    # query = select * from world_happiness where country_id = %s
+    ''' returns a list of dictionaries each for the same country containing information from the 
+    report from a single year. '''
     query = '''SELECT  * FROM world_happiness, countries, country_abbreviations
             WHERE countries.country_name = country_abbreviations.country_name
             AND country_abbreviations.abbreviation = %s

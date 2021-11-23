@@ -14,5 +14,8 @@ All features are working.
 NOTES: There are a few small quirks/things we couldn't figure out:
     - The chart axes don't start at zero which is annoying and we couldn't figure out how
     to fix it in a reasonable amount of time.
+    - Similarly, clicking the dataset key on the charts makes the data disappear and we weren't able 
+    to figure out how to remove it. 
     - The name of the 'Plot' page maybe isn't quite right -- we tried lots of different names
     ('compare', 'correlation', 'trends', etc.) and none of them quite fit. 
+    

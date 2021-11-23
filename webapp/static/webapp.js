@@ -1,10 +1,6 @@
-/* Emily Litton and Jayti Arora
+/*  Emily Litton and Jayti Arora
     webapp.js
     November 11, 2021 
-
-    Adopted from books.js
-    Jeff Ondich, 27 April 2016
-    Updated, 5 November 2020
  */
 
 window.onload = initialize;
@@ -68,7 +64,8 @@ function onCountiresSelectionChanged() {
 } 
 
 function initializeMap() {
-    /* Calls the api to assign colors to different countries based on happiness and draws map */
+    /* Calls the api to assign colors to different countries based on 
+    happiness and then uses data to draw map */
      let url = getAPIBaseURL() + 'countries/happiness';
 
      fetch(url, {method: 'get'})
@@ -81,8 +78,9 @@ function initializeMap() {
         for (var i=0; i<happiness_scores.length;i++) {
             country_data = happiness_scores[i];
             value = country_data["life_ladder"];
+            
+            // assign color value based on life ladder score
             var color; 
-
             if(value < 4.2){
                 color = "#C3FFF9"; //lightest
             }else if(value < 5.4){
@@ -138,6 +136,7 @@ function onCountryClick(geography) {
     // set selector to '--'
     document.getElementById('country_selector').getElementsByTagName('option')[0].selected = '--';
     
+    // call to display country information
     let country_abbreviation = geography.id;
     displayCountryInfo(country_abbreviation);
 }
@@ -184,6 +183,7 @@ function displayCountryInfo(country_abbreviation){
             summaryElement.innerHTML = summary;
         }
         
+        // checks if there is a country label to display and displays it
         var countrySummaryTitle = document.getElementById('country-title');
         if(countrySummaryTitle){
             if(no_data){
@@ -220,16 +220,8 @@ function displayCountryInfo(country_abbreviation){
                         title:{
                             display: true,
                             text: "Life Ladder Score"
-
                         },
-                        
-                        
                     },
-                    // yAxes: {
-                    //     ticks:{
-                    //         beginAtZero:true,
-                    //     },
-                    // }
                 },
                 plugins: {
                     title: {
@@ -253,10 +245,12 @@ function displayCountryInfo(country_abbreviation){
     });}
 
 function createChartOnClick() {
+    /* creates and displays a scatter plot on screen based on selected axis variables */
     var chart = document.getElementById('chart');
     if(chart){
         chart.innerHTML = '<canvas id="myChart" width="60%" height="40%"></canvas>';
     }
+    // connects the variable value to the display name
     var y_axis_labels = {'social_support': 'Social Support', 
             'gdp':'GDP Per Capita', 'freedom':'Freedom', 'generosity':"Generosity", 
             'percieved_corruption': 'Percieved Corruption', 'life_expectancy':'Life Expectancy'};
@@ -268,23 +262,21 @@ function createChartOnClick() {
             return
         }
         
-        
         let url = getAPIBaseURL() + "graph/" + x_axis + "/" + y_axis
         fetch(url, {method: 'get'})
 
         .then((response) => response.json())
         .then(function(chart_data){
+            // lists for creating chart using chart.js specs
             let plot_data = [];
             let labels = [];
-            let x_max = 0;
+            
+            // now add points and labels to the lists 
             for(let i = 0; i < chart_data.length; i++){
                 point_x = chart_data[i]["x"];
-                if(point_x > x_max){
-                    x_max = point_x;
-                };
                 point_y = chart_data[i]["y"];
                 if(point_x != null && point_y != null){
-                    plot_data.push({x:point_x,y:point_y});
+                    plot_data.push({x:point_x, y:point_y});
                     labels.push(chart_data[i]["country_name"]);
                 };
             };

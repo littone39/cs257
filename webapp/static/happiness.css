@@ -5,64 +5,65 @@
     Styles for the "world happiness" webapp 
     for CS 257
 */
+
 body{
   width: 100%;
   padding: 0px;
   background-color:beige;
 }
+
 a {
   color: #0B86B5;
   text-decoration: underline;
 }
+
 a:hover {
   background-color: #D8D8D8;
   text-decoration: none;
   cursor: pointer;
 }
+
+/*CSS for map page*/
 #country-title{
   width: 30%;
   float:left;
 }
+
 .summary{
   width:30%;
   float:left;
   font-size: 80%;
   padding-top: 1%; 
 }
+
 .country-summary-list{
   list-style-type: none;
   padding-bottom:none;
 }
+
 .selector-and-chart{
   display:block;
 }
+
 #map-container {
   position: relative;
   float: left;
-
-  /* 
-  weird trick from datamaps sample https://css-tricks.com/aspect-ratio-boxes/
-   */
   height: 0;
   width: 68%;
   padding-bottom: 28%;
   padding-top:5%;
-  /* add margin */
   margin-left:2% ; 
   background:#FCBE2D;
 }
-#goals {
-  float: left;
-  width: 40%;
-}
+
 .map-directions{
   margin-left: 3%;
 }
+
 #happiness_chart{
   width: 30%;
   float:right;
   padding:2%;
-  /* position:absolute; */
 }
 
 /* colors for legend */
@@ -90,9 +91,6 @@ a:hover {
   clear:left;
   background-color:beige;
 }
-.beige-background{
-  background-color: beige;
-}
 
 .legend-container{
   background-color:#FCBE2D;
@@ -102,29 +100,26 @@ a:hover {
   margin-left: 2%;
   margin-bottom: 2%;
 }
+
 #country-title{
   padding-left:2%;
 }
+
 .hoverpopup {
   background: #eeeeee;
   border: 1px black solid;
   padding: 3px;
 }
 
+/*CSS for navbar*/
 .navbar-color{
-  background-color:#FCBE2D;   
-  /* background-color :#a9a4fe; */
+  background-color:#FCBE2D;
   color: #30374D;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .navbar-brand:hover{
-  color: #ffffff;;
-  /* background-color: #0fb9be; */
-  background-color: #447C81;
-  border-radius: 10px;
-  border-left: 5px solid #447C81;
-  border-right: 5px solid #447C81;
+  color: #30374D;
+  background-color: #FCBE2D;
 }
 
 .nav-item a{
@@ -132,43 +127,51 @@ a:hover {
 }
 
 .nav-item a:hover{
-  color: #ffffff;;
-  /* background-color: #0fb9be; */
+  color: #ffffff;
   background-color: #447C81;
   border-radius: 10px;
 }
 
+.nav-selected{
+  color: #ffffff;
+  background-color: #82BCBC;
+  border-radius: 10px;
+}
+
+/*CSS for Plot page*/
 #chart-container{
   display:block;
   float:left;
-  /* width:90%; */
   padding:3%;
   margin-top:50px;
   width: 100%;
   min-height: 95vh;
   background-color:beige;
 }
+
 canvas{
   background-color: white;
 }
 
-.selectors-and-chart{
-  /* position:relative; */
+.selector-and-chart{
   background-color:white;
 }
+
 .correlation-chart{
-  width: 60%;
+  width: 70%;
   padding: 3%;
   background-color: beige;
 }
+
 #chart-background{
   padding: 0%;
   background-color: beige;
 }
+
 select{
-  /* background-color:beige; */
   border-radius: 0px;
 }
+
 #graph-button {
   padding: 10px 20px;
   text-align: center;
@@ -181,10 +184,13 @@ select{
   border-radius: 10px;
   border:none;
 }
+
 #graph-button:hover {
   background-color: #447C81;
   color: white;
 }
+
+/*CSS for About page*/
 .about{
   padding: 5% 10%;
   margin-top: 50px;
@@ -192,17 +198,20 @@ select{
   height:94vh;
   background-color: beige;
 }
+
+/*CSS for Home page*/
 .home{
   text-align: center;
   padding-left: 20%;
   padding-right: 20%;
-  /* margin: 5%; */
 }
+
 .home-page{
   background-color: beige;
   margin-top:50px;
   height: 95vh;
 }
+
 a.home_button{
   display: inline-block;
   color: black;
@@ -216,24 +225,30 @@ a.home_button{
   border-radius: 10px;
   font-size: 110%;
 }
+
 a.home_button:hover{
-  /* background-color:#a9a4fe; */
   background-color: #447C81;
   color: #ffffff;
 }
+
 .home-button-container{
   float:center;
 }
+
 .map-body{
   padding-top: 70px;
   background-color:beige;
+  min-height: 100vh;
 }
+
 p.intro{
   font-size: 120%;
 }
+
 p.chart{
   width:60%;
 }
+
 select {
   padding: 5px 10px;
   text-decoration: none;

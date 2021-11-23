@@ -3,8 +3,8 @@
     Emily Litton, Jayti Arora
     11 November 2021
 
-    A small Flask application that provides a barelywebsite with an accompanying
-    API (which is also tiny) to support that website.
+    A Flask application that provides a our happiness website with an
+    accompanying API to support the site. 
 '''
 import flask
 import argparse
