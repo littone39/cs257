@@ -181,7 +181,16 @@ a:hover {
   background-color:#FCBE2D;   
   /* background-color :#a9a4fe; */
   color: #30374D;
-  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar-brand:hover{
+  color: #ffffff;;
+  /* background-color: #0fb9be; */
+  background-color: #447C81;
+  border-radius: 10px;
+  border-left: 5px solid #447C81;
+  border-right: 5px solid #447C81;
 }
 
 .nav-item a{
@@ -210,13 +219,13 @@ canvas{
   background-color: white;
 }
 
-.selector-and-chart{
+.selectors-and-chart{
   /* position:relative; */
   background-color:white;
 }
 
 .correlation-chart{
-  width: 70%;
+  width: 60%;
   padding: 3%;
   background-color: beige;
 }
