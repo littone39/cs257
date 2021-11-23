@@ -293,5 +293,19 @@ a.home_button:hover{
 }
 
 p.intro{
-  font-size: 110%;
+  font-size: 120%;
+}
+
+select {
+  padding: 5px 10px;
+  /* text-align: center; */
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 16px;
+  margin: 4px 2px;
+  /* cursor: pointer; */
+  background-color: #447C81;
+  border-radius: 10px;
+  border:none;
+  color: white;
 }

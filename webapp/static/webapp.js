@@ -76,7 +76,11 @@ function initializeMap() {
      .then((response) => response.json())
      .then(function(happiness_scores){
         countryInfo = {};
-        for (const [abbreviation, value] of Object.entries(happiness_scores)) {
+        var value;
+        var country_data;
+        for (var i=0; i<happiness_scores.length;i++) {
+            country_data = happiness_scores[i];
+            value = country_data["life_ladder"];
             var color; 
 
             if(value < 4.2){
@@ -89,7 +93,7 @@ function initializeMap() {
                 color = "#00424B"; //darkest
             }
             
-            countryInfo[abbreviation] = {"fillColor":color};
+            countryInfo[country_data["id"]] = {"fillColor":color};
           }
     
         var page_map = document.getElementById('map-container');

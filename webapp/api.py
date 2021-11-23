@@ -22,7 +22,7 @@ def get_connection():
                             user=config.user,
                             password=config.password)
 
-@api.route('/api/help')
+@api.route('/api/help/')
 def help():
     help_text = open('api_help.txt').read()
     return flask.Response(help_text, mimetype='text/plain')
@@ -35,7 +35,6 @@ def get_countries():
         by country name.
 
     '''
-    # query = '''SELECT id, country_name from countries ORDER BY country_name'''
     query = '''SELECT * from country_abbreviations ORDER BY country_name;'''
     country_list = []
     try:
@@ -52,7 +51,6 @@ def get_countries():
 
     return json.dumps(country_list)
 
-##### this only works with new data.sql #####
 @api.route('/countries/happiness')
 def get_all_happiness():
     ''' returns a list of dictionaries containing country code and life_ladder (happiness) score '''
@@ -61,19 +59,19 @@ def get_all_happiness():
             WHERE country_abbreviations.country_name = countries.country_name
             AND countries.id = world_happiness.country_id 
             AND world_happiness.year = 2021; '''
-    happiness_dict = {}
+    happiness_list = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
         cursor.execute(query)
         for row in cursor:
-            happiness_dict[row[0]] = row[1]
+            happiness_list.append({"id":row[0], "life_ladder":row[1]})
         cursor.close()
         connection.close()
     except Exception as e:
         print(e, file=sys.stderr)
 
-    return json.dumps(happiness_dict)
+    return json.dumps(happiness_list)
 
 @api.route('/country/<country_abbreviation>')
 def get_country(country_abbreviation):
@@ -93,8 +91,7 @@ def get_country(country_abbreviation):
         for row in cursor:
             entry = {'id':row[0],'life_ladder':row[2], 'year':row[1], 'gdp':row[3], \
             'social_support':row[4], 'life_expectancy':row[5], 'freedom':row[6], \
-                'generosity':row[7], 'percieved_corruption':row[8], 'positive_affect':row[9],\
-                    'negative_affect':row[10], 'country_name':row[12]}
+                'generosity':row[7], 'percieved_corruption':row[8], 'country_name':row[12]}
             happiness_list.append(entry)
         cursor.close()
         connection.close()
