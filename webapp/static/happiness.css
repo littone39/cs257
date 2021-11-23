@@ -2,10 +2,6 @@
     happiness.css
     Emily Litton, Jayti Arora
 
-    Adopted from books.css
-    Jeff Ondich, 27 April 2016
-    Updated 6 November 2021
-
     Styles for the "world happiness" webapp 
     for CS 257
 */
@@ -14,23 +10,10 @@ body{
   padding: 0px;
   background-color:beige;
 }
-
-/* table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    
-}
-
-th, td {
-    border: 1px solid black;
-    padding: 15px;
-} */
-
 a {
   color: #0B86B5;
   text-decoration: underline;
 }
-
 a:hover {
   background-color: #D8D8D8;
   text-decoration: none;
@@ -43,55 +26,22 @@ a:hover {
 .summary{
   width:30%;
   float:left;
-  /* padding:0%; */
   font-size: 80%;
-  
-  padding-top: 1%;
-
-  
+  padding-top: 1%; 
 }
 .country-summary-list{
   list-style-type: none;
   padding-bottom:none;
 }
-/* #country-info-container{
-  width: 100%;
-  height: auto;
-  background-color:#a9a4fe;
-  display:list-item;
-  
-}
-.country-info{
-  width:100%;
-  display:block;
-  margin: 0;
-  
-}
-
-#country-summary {
-  float: left;
-  width: 90%;
-  padding: 10%;
-  margin: 5%;
-  
-} */
-
-/* .country-table{
-  padding: 5%;
-} */
 .selector-and-chart{
   display:block;
-  
 }
 #map-container {
   position: relative;
   float: left;
 
-  /* Preserving the container div's aspect ratio (which should be 4:3 for
-   * the Datamap US map) uses this slightly bizarre CSS trick, where you make
-   * sure the height is 0 and the ratio between width and padding-bottom
-   * is your desired aspect ratio. See this pretty good article for details:
-   * https://css-tricks.com/aspect-ratio-boxes/
+  /* 
+  weird trick from datamaps sample https://css-tricks.com/aspect-ratio-boxes/
    */
   height: 0;
   width: 68%;
@@ -99,33 +49,14 @@ a:hover {
   padding-top:5%;
   /* add margin */
   margin-left:2% ; 
-
-  /* My friend Shaun (Carleton CS '02) is even worse than I am at the details of
-   * graphic design. So when he wants to make sure the designers don't preserve
-   * his color choices, he makes stuff orange to force their hand. I am using
-   * orange here both to remind you to change the color, and to make visible the
-   * size and aspect ratio of the US map object. */
-  
-  
-   background:#FCBE2D;
-   /* background: #fad889 */
+  background:#FCBE2D;
 }
-
 #goals {
   float: left;
   width: 40%;
 }
-
-.welcome{
-  padding-top:50px;
-  padding: 30px;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color:aquamarine;
-  margin-bottom:0;
-}
 .map-directions{
   margin-left: 3%;
-  
 }
 #happiness_chart{
   width: 30%;
@@ -133,6 +64,8 @@ a:hover {
   padding:2%;
   /* position:absolute; */
 }
+
+/* colors for legend */
 .lightest{
   background-color: #C3FFF9;
 }
@@ -148,9 +81,7 @@ a:hover {
 .beige{
   color:beige;
 }
-.beige-background{
-  background-color: beige;
-}
+
 #map-legend{
   width:12%;
   font-size: 50%;
@@ -158,6 +89,9 @@ a:hover {
   margin:0px;
   clear:left;
   background-color:beige;
+}
+.beige-background{
+  background-color: beige;
 }
 
 .legend-container{
@@ -202,25 +136,25 @@ a:hover {
   padding:3%;
   margin-top:50px;
   width: 100%;
-  height: 125vh;
+  min-height: 95vh;
   background-color:beige;
-  
 }
 canvas{
   background-color: white;
 }
-
 .selector-and-chart{
   /* position:relative; */
   background-color:white;
 }
-
 .correlation-chart{
   width: 70%;
   padding: 3%;
   background-color: beige;
 }
-
+#chart-background{
+  padding: 0%;
+  background-color: beige;
+}
 select{
   /* background-color:beige; */
   border-radius: 0px;
@@ -247,10 +181,7 @@ select{
   width:100%;
   height:94vh;
   background-color: beige;
-
-
 }
-
 .home{
   text-align: center;
   padding-left: 20%;
@@ -262,8 +193,6 @@ select{
   margin-top:50px;
   height: 95vh;
 }
-
-
 a.home_button{
   display: inline-block;
   color: black;
@@ -271,13 +200,12 @@ a.home_button{
   padding: 14px 30px;
   margin: 2%;
   text-decoration: none;
-  /* background-color: #0fb9be; */
   background-color:#82BCBC; 
   height:8%;
   width: 30%;
   border-radius: 10px;
+  font-size: 110%;
 }
-
 a.home_button:hover{
   /* background-color:#a9a4fe; */
   background-color: #447C81;
@@ -286,27 +214,22 @@ a.home_button:hover{
 .home-button-container{
   float:center;
 }
-
 .map-body{
   padding-top: 70px;
   background-color:beige;
 }
-
 p.intro{
   font-size: 120%;
 }
 p.chart{
   width:60%;
 }
-
 select {
   padding: 5px 10px;
-  /* text-align: center; */
   text-decoration: none;
-  /* display: inline-block; */
   font-size: 16px;
   margin: 4px 2px;
-  /* cursor: pointer; */
+  cursor: pointer;
   background-color: #447C81;
   border-radius: 10px;
   border:none;

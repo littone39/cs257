@@ -220,8 +220,16 @@ function displayCountryInfo(country_abbreviation){
                         title:{
                             display: true,
                             text: "Life Ladder Score"
-                        }
+
+                        },
+                        
+                        
                     },
+                    // yAxes: {
+                    //     ticks:{
+                    //         beginAtZero:true,
+                    //     },
+                    // }
                 },
                 plugins: {
                     title: {

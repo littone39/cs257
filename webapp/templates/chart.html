@@ -59,7 +59,7 @@
               <a class="nav-link navbar-color" href="/map">Map</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link navbar-color" href="/chart">Trends</a>
+              <a class="nav-link navbar-color" href="/chart">Plot</a>
             </li>
             <li class="nav-item">
               <a class="nav-link navbar-color" href="/about-us">About</a>
@@ -72,9 +72,8 @@
     <!-- CHART -->
     <div id="chart-container" class="selectors-and-chart">
         <!-- description and selector -->
-        <h2>Global Trends</h2>
-        <p class="chart">Analyze global trends by comparing happiness to 
-          other quality of life factors. We use life ladder score as a proxy measure of happiness.
+        <h2>Create a Scatter Plot</h2>
+        <p class="chart">Analyze how other factors impact national happiness by creating a scatter plot. We use life ladder score as a proxy measure of happiness.
           Each dot represents the data of a single country from the year 2021.</p>
           <p id= "x_selector" >X-Axis: Life Ladder</p>
         <p class="select-axis">Y-Axis <select id="y_selector">
@@ -88,10 +87,11 @@
         </select></p>
         <button id="graph-button" class="plot">Plot</button>
         <!-- actual chart below -->
-        <div>
+        <div id="chart-background">
           <div id="chart" class="correlation-chart"></div>
         </div>
     </div>
+    
 
   </body>
 </html>
