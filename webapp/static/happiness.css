@@ -242,7 +242,7 @@ select{
   color: white;
 }
 .about{
-  padding: 3%;
+  padding: 5% 10%;
   margin-top: 50px;
   width:100%;
   height:94vh;
@@ -294,6 +294,9 @@ a.home_button:hover{
 
 p.intro{
   font-size: 120%;
+}
+p.chart{
+  width:60%;
 }
 
 select {
